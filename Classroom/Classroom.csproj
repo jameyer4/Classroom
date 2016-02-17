@@ -274,10 +274,11 @@
     <Content Include="Views\Student\Delete.cshtml" />
     <Content Include="Views\Student\Marks.cshtml" />
     <Content Include="Views\Student\EditMarks.cshtml" />
+    <Content Include="Views\Student\CreateMarks.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\ChartMain.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Subject\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

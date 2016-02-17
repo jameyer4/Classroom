@@ -10,13 +10,13 @@ using Microsoft.Ajax.Utilities;
 
 namespace Classroom.Controllers
 {
-   // [RoutePrefix("api/Student")]
     public class StudentController : Controller
     {
         private ClassroomContext db = new ClassroomContext();
         Student childStudent = new Student(); 
         List<Student> studentList = new List<Student>();
 
+#region Constructors and Index
         public StudentController()
         {
         }
@@ -36,13 +36,6 @@ namespace Classroom.Controllers
         {
             var studentGroup = db.Student.ToList();
 
-            //Student student = db.Student.Find(id);
-            //if (student == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(student);
-
             return View(studentGroup);
         }
 
@@ -50,7 +43,9 @@ namespace Classroom.Controllers
         {
             return View();
         }
+#endregion
 
+#region Create, Edit and Delete student
         [System.Web.Mvc.HttpPost]
         public ActionResult Create([Bind(Include = "FirstName,LastName,Age")] Student student)
         {
@@ -104,6 +99,7 @@ namespace Classroom.Controllers
             return View(student);
         }
 
+
         //GET: /Student/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -129,7 +125,9 @@ namespace Classroom.Controllers
             db.SaveChanges();   
             return RedirectToAction("Index");
         }
+#endregion
 
+#region Find student marks
         //GET: /Student/Marks/5
         public ActionResult Marks(int? id)
         {
@@ -148,9 +146,13 @@ namespace Classroom.Controllers
                 }
                 catch (Exception ex)
                 {
+                    if (subjects.Id == 0)
+                    {
+                        return RedirectToAction("CreateMarks");
+                    }
                     ModelState.AddModelError("","Student has no marks to show.");
-                    RedirectToAction("Index");
-                    return View();
+
+                    return RedirectToAction("Index"); ;
                 }
 
             }
@@ -160,7 +162,9 @@ namespace Classroom.Controllers
             }
             return View(subjects);                        
         }
+#endregion
 
+#region Edit marks
         //GET: /Student/EditMarks/5
         public ActionResult EditMarks(int? id)
         {
@@ -202,5 +206,32 @@ namespace Classroom.Controllers
             }
             return View(subjects);
         }
+#endregion
+
+#region Create marks
+        //GET: /Student/CreateMarks
+        public ActionResult CreateMarks()
+        {
+            return View();
+        }
+
+        //POST:/Student/Create<arks/5
+        [HttpPost]
+        public ActionResult CreateMarks([Bind(Include = "Id,StudetnId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subjects subjects)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Subject.Add(subjects);
+                if (subjects.ToString().IsNullOrWhiteSpace())
+                {
+                    throw new ArgumentException("Student values not complete");
+                }
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(subjects);
+        }
+#endregion
     }
 }

@@ -1,0 +1,17 @@
+﻿@model Classroom.Models.Subjects
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            
+            <!--Graph can also be drawn from DB data (http://www.w3schools.com/aspnet/webpages_chart.asp)-->
+            <img src='@Url.Action("ChartMain", "Subject")'/>
+            
+
+        </div>
+}
+

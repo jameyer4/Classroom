@@ -1,6 +1,8 @@
-﻿namespace Classroom.Models
+﻿using System.Collections;
+
+namespace Classroom.Models
 {
-    public class Subjects
+    public class Subjects : IEnumerable
     {
         public int Id { get; set; }
         public int StudentId { get; set; }
@@ -11,5 +13,9 @@
         public double Geography { get; set; }
         public double History { get; set; }
         public double LifeOrientation { get; set; }
+        public IEnumerator GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
