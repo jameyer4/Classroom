@@ -148,7 +148,7 @@ namespace Classroom.Controllers
                 {
                     if (subjects.Id == 0)
                     {
-                        return RedirectToAction("CreateMarks");
+                        return RedirectToAction("CreateMarks",new {StudentId=id});
                     }
                     ModelState.AddModelError("","Student has no marks to show.");
 
@@ -190,7 +190,6 @@ namespace Classroom.Controllers
                 }
 
             }
-            return View();
         }
 
         //POST: /Student/EditMarks/5
@@ -210,15 +209,17 @@ namespace Classroom.Controllers
 
 #region Create marks
         //GET: /Student/CreateMarks
-        public ActionResult CreateMarks()
-        {
-            return View();
+        public ActionResult CreateMarks(int? id)
+            {
+                ViewBag.sId = id;
+                return View();
         }
 
         //POST:/Student/Create<arks/5
         [HttpPost]
-        public ActionResult CreateMarks([Bind(Include = "Id,StudetnId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subjects subjects)
+        public ActionResult CreateMarks([Bind(Include = "Id,StudentId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subjects subjects)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Subject.Add(subjects);

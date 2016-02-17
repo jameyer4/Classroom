@@ -1,4 +1,5 @@
-﻿@model Classroom.Models.Subjects
+﻿@using Classroom.Models
+@model Classroom.Models.Subjects
 
 @{
     ViewBag.Title = "EditMarks";
@@ -9,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+   @*@(Model.StudentId=ViewBag.sId)*@
     <div class="form-horizontal">
         <h4>Subjects</h4>
         <hr />

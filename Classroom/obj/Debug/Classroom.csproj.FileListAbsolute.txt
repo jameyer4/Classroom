@@ -271,8 +271,8 @@ D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.xml
 D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.Migrations.InitialCreate.resources
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cache
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.dll
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.pdb
+D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
