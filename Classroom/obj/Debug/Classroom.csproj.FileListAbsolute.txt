@@ -1,0 +1,204 @@
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Classroom.dll.config
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Classroom.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Classroom.pdb
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Antlr3.Runtime.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\EntityFramework.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\EntityFramework.SqlServer.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Newtonsoft.Json.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Owin.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Net.Http.Formatting.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Helpers.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Http.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Http.WebHost.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Mvc.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Optimization.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Razor.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.WebPages.Deployment.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.WebPages.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.WebPages.Razor.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\WebGrease.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\EntityFramework.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\EntityFramework.SqlServer.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Helpers.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Mvc.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Optimization.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Razor.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.WebPages.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.WebPages.Deployment.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.WebPages.Razor.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Newtonsoft.Json.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Antlr3.Runtime.pdb
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Net.Http.Formatting.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Http.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\System.Web.Http.WebHost.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\obj\Debug\Classroom.Migrations.InitialCreate.resources
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cache
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\obj\Debug\Classroom.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\obj\Debug\Classroom.pdb
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\nunit.framework.dll
+C:\Users\arnom\documents\visual studio 2013\Projects\Classroom\Classroom\bin\nunit.framework.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Classroom.dll.config
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Classroom.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Classroom.pdb
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Antlr3.Runtime.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\EntityFramework.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\EntityFramework.SqlServer.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Newtonsoft.Json.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\nunit.framework.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Owin.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Net.Http.Formatting.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Helpers.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Http.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Http.WebHost.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Mvc.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Optimization.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Razor.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.WebPages.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Razor.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\WebGrease.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\EntityFramework.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\EntityFramework.SqlServer.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\nunit.framework.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Helpers.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Mvc.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Optimization.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Razor.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.WebPages.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Razor.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Newtonsoft.Json.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Antlr3.Runtime.pdb
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Net.Http.Formatting.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Http.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\System.Web.Http.WebHost.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\obj\Debug\Classroom.Migrations.InitialCreate.resources
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cache
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\obj\Debug\Classroom.dll
+C:\Users\Arno\Downloads\Classroom\Classroom\Classroom\obj\Debug\Classroom.pdb
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Classroom.dll.config
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Classroom.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Classroom.pdb
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Antlr3.Runtime.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Common.Logging.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\EntityFramework.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\EntityFramework.SqlServer.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\GithubNugetDistributor.exe
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Newtonsoft.Json.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\nunit.framework.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Octokit.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Owin.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Spring.Rest.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Spring.Social.Core.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Net.Http.Formatting.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Helpers.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Http.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Http.WebHost.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Mvc.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Optimization.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Razor.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.WebPages.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Razor.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\WebGrease.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\EntityFramework.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\EntityFramework.SqlServer.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\nunit.framework.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Spring.Rest.pdb
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Spring.Rest.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Spring.Social.Core.pdb
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Spring.Social.Core.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Helpers.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Mvc.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Optimization.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Razor.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.WebPages.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.WebPages.Razor.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Newtonsoft.Json.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Antlr3.Runtime.pdb
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Net.Http.Formatting.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Http.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\System.Web.Http.WebHost.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\obj\Debug\Classroom.Migrations.InitialCreate.resources
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cache
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\obj\Debug\Classroom.dll
+C:\Users\Arno\Documents\GitHub\Classroom\Classroom\Classroom\obj\Debug\Classroom.pdb
