@@ -10,13 +10,26 @@ namespace Classroom.Controllers
     public class SubjectController : Controller
     {
         private ClassroomContext db = new ClassroomContext();
+        List<Subjects> subjectList = new List<Subjects>();
+
+#region Constructors and Index
+        public SubjectController()
+        {
+        }
+
+        public SubjectController(List<Subjects> subjects)
+        {
+            this.subjectList = subjects;
+        }
 
         public ActionResult Index()
         {
             
             return View();
         }
+#endregion
 
+#region ChartMain
         public ActionResult ChartMain()
         {
             var subjects = db.Subject.ToList();
@@ -45,5 +58,6 @@ namespace Classroom.Controllers
             ViewBag.Names = names;
             return View();
         }
+#endregion
     }
 }
