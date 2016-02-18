@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Classroom.Controllers;
 using Classroom.Models;
 using NUnit.Framework;
 
 namespace Classroom.Tests
 {
+    [TestFixture]
     public class TestSubjects
     {
         [Test]

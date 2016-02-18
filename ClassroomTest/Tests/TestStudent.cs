@@ -17,7 +17,6 @@ namespace Classroom.Tests
             var controller = new StudentController(student);
 
             var result = controller.Create();
-            Console.WriteLine("Result: "+result+", Expected: "+student);
             Assert.AreEqual(student, result);
         }
         [Test]

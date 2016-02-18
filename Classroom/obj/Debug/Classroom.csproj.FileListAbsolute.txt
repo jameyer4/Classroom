@@ -276,3 +276,7 @@ D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cac
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.dll
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.pdb
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
+D:\Git-Repos\Classroom\Classroom\bin\NSubstitute.dll
+D:\Git-Repos\Classroom\Classroom\bin\NSubstitute.xml
+D:\Git-Repos\Classroom\Classroom\bin\Moq.dll
+D:\Git-Repos\Classroom\Classroom\bin\Moq.xml
