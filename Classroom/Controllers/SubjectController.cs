@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
 using System.Web.Mvc;
 using Classroom.Models;
-using NUnit.Framework;
+
 
 namespace Classroom.Controllers
 {
+    [Authorize(Roles = "User")]
     public class SubjectController : Controller
     {
         private ClassroomContext db = new ClassroomContext();
@@ -24,7 +24,6 @@ namespace Classroom.Controllers
 
         public ActionResult Index()
         {
-            
             return View();
         }
 #endregion

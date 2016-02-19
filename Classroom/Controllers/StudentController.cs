@@ -10,6 +10,7 @@ using Microsoft.Ajax.Utilities;
 
 namespace Classroom.Controllers
 {
+    [Authorize(Roles="User")]
     public class StudentController : Controller
     {
         private ClassroomContext db = new ClassroomContext();
