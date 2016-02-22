@@ -223,7 +223,9 @@ D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.MicrosoftAccount.dl
 D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.OAuth.dll
 D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Owin.Security.Twitter.dll
 D:\Git-Repos\Classroom\Classroom\bin\Microsoft.Web.Infrastructure.dll
+D:\Git-Repos\Classroom\Classroom\bin\Moq.dll
 D:\Git-Repos\Classroom\Classroom\bin\Newtonsoft.Json.dll
+D:\Git-Repos\Classroom\Classroom\bin\NSubstitute.dll
 D:\Git-Repos\Classroom\Classroom\bin\nunit.framework.dll
 D:\Git-Repos\Classroom\Classroom\bin\Octokit.dll
 D:\Git-Repos\Classroom\Classroom\bin\Owin.dll
@@ -242,6 +244,8 @@ D:\Git-Repos\Classroom\Classroom\bin\System.Web.WebPages.Razor.dll
 D:\Git-Repos\Classroom\Classroom\bin\WebGrease.dll
 D:\Git-Repos\Classroom\Classroom\bin\EntityFramework.xml
 D:\Git-Repos\Classroom\Classroom\bin\EntityFramework.SqlServer.xml
+D:\Git-Repos\Classroom\Classroom\bin\Moq.xml
+D:\Git-Repos\Classroom\Classroom\bin\NSubstitute.xml
 D:\Git-Repos\Classroom\Classroom\bin\nunit.framework.xml
 D:\Git-Repos\Classroom\Classroom\bin\Spring.Rest.pdb
 D:\Git-Repos\Classroom\Classroom\bin\Spring.Rest.xml
@@ -275,8 +279,3 @@ D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.Migrations.InitialCreate.re
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cache
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.dll
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.pdb
-D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache
-D:\Git-Repos\Classroom\Classroom\bin\NSubstitute.dll
-D:\Git-Repos\Classroom\Classroom\bin\NSubstitute.xml
-D:\Git-Repos\Classroom\Classroom\bin\Moq.dll
-D:\Git-Repos\Classroom\Classroom\bin\Moq.xml

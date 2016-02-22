@@ -4,9 +4,22 @@
 }
 
 <h2>Students</h2>
-
+@if (ViewBag.userFlag) 
+{ 
+    @ViewBag.errorMessage;      
+}
+else if (ViewBag.errorFlag)
+{
     <p>
-        @Html.ActionLink("Create new", "Create")
+    @Html.ActionLink("Create new", "Create")
+    </p>
+    <h4>@ViewBag.errorMessage</h4>
+    
+}
+else
+{
+    <p>
+    @Html.ActionLink("Create new", "Create")
     </p>
     <table>
         <tr>
@@ -23,33 +36,34 @@
                 @Html.DisplayName("Configure")
             </th>
             <th>
-               @Html.DisplayName("Marks")
+                @Html.DisplayName("Marks")
             </th>
         </tr>
-
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.Id})  
-                    @*@Html.ActionLink("Details", "Details", new { id = item.UserId }) |*@
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})  
-                </td>
-                <td>
-                    @Html.ActionLink("Avrg", "Marks", new { id = item.Id })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @*@Html.ActionLink("Details", "Details", new { id = item.UserId }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Avrg", "Marks", new { id = item.Id })
+            </td>
+        </tr>
         }
+    </table>
 
+}
             
 
-    </table>
+    

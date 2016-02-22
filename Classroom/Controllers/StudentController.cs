@@ -6,11 +6,14 @@ using System.Net;
 using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
+using NUnit.Framework;
+using WebGrease.Activities;
 
 
 namespace Classroom.Controllers
 {
-    [Authorize(Roles="User")]
+    //[Authorize(Roles="User")]
     public class StudentController : Controller
     {
         private ClassroomContext db = new ClassroomContext();
@@ -24,20 +27,43 @@ namespace Classroom.Controllers
 
         public StudentController(Student student)
         {
-            this.childStudent = student;
+            childStudent = student;
         }
 
         public StudentController(List<Student> students)
         {
-            this.studentList = students;
+            studentList = students;
         }
 
         [System.Web.Http.Route("Index")]
         public ViewResult Index()
         {
-            var studentGroup = db.Student.ToList();
+            ViewBag.userFlag = false;
+            ViewBag.errorFlag = true;
+            ViewBag.errorMessage = "Go ahead and create a student.";
 
-            return View(studentGroup);
+            if (User.Identity.Name.IsNullOrWhiteSpace())
+            {
+                ViewBag.userFlag = true;
+                ViewBag.errorMessage = "Please login to access student information";
+                return View();
+            }
+            try
+            {
+                var studentGroup = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
+                if (studentGroup.Count > 0)
+                {
+                    ViewBag.errorFlag = false; 
+                }
+                return View(studentGroup);
+            }
+            catch (Exception ex)
+            {
+                //Create log for errors
+                return View();
+            }
+            
+            
         }
 
         public ActionResult Create()
@@ -48,15 +74,35 @@ namespace Classroom.Controllers
 
 #region Create, Edit and Delete student
         [System.Web.Mvc.HttpPost]
-        public ActionResult Create([Bind(Include = "FirstName,LastName,Age")] Student student)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,User")] Student student)
         {
+            ViewBag.userFlag = false;
             string lName = Request.Form.Get("LastNameInput");
             string fName = Request.Form.Get("FirstNameInput");
             int age = Convert.ToInt32(Request.Form.Get("AgeInput"));
-
-            student.FirstName = fName;
-            student.LastName = lName;
-            student.Age = age;
+            try
+            {
+                string user = User.Identity.GetUserName();
+                student.FirstName = fName;
+                student.LastName = lName;
+                student.Age = age;
+                student.User = user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (student.Id == 0)
+            {
+                student.Id = 1;
+            }
+            if (student.User.IsNullOrWhiteSpace())
+            {
+                ViewBag.errorMessage = "Please login to create student.";
+                ViewBag.userFlag = true;
+                return View();
+            }  
+            //student.User=
 
             if (ModelState.IsValid)
             {

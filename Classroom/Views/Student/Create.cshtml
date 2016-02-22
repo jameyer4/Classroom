@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.Ajax.Utilities
+
 @{
     ViewBag.Title = "Create";
 }
@@ -8,31 +9,38 @@
 <p align="center">
     @Html.ActionLink("Back to Students", "Index")
 </p>
-
-@using (Html.BeginForm("Create", "Student", FormMethod.Post)) 
+@if (ViewBag.userFlag == true)
 {
-    <table align="center">
-        <tr>
-            <td>
-                @Html.DisplayName("Last name")
-                @Html.TextBox("LastNameInput")
-            </td>
-        </tr>
-        <tr align="center">
-            <td>
-                @Html.DisplayName("First name")
-                @Html.TextBox("FIrstNameInput")
-            </td>
-        </tr>
-        <tr align="center">
-            <td>
-                @Html.DisplayName("Age")
-                @Html.TextBox("AgeInput")
-            </td>
-        </tr>
-    </table>
-    <br/>
-<div align="center">
-    <input type="submit" name="submit" value="Create Student"><br />
-</div>
+    <h2 align="center">@ViewBag.errorMessage</h2>
+
+}
+else
+{
+using (Html.BeginForm("Create", "Student", FormMethod.Post))
+ {
+     <table align="center">
+         <tr>
+             <td>
+                 @Html.DisplayName("Last name")
+                 @Html.TextBox("LastNameInput")
+             </td>
+         </tr>
+         <tr align="center">
+             <td>
+                 @Html.DisplayName("First name")
+                 @Html.TextBox("FIrstNameInput")
+             </td>
+         </tr>
+         <tr align="center">
+             <td>
+                 @Html.DisplayName("Age")
+                 @Html.TextBox("AgeInput")
+             </td>
+         </tr>
+     </table>
+     <br/>
+     <div align="center">
+         <input type="submit" name="submit" value="Create Student"><br/>
+     </div>
+ }
 }
