@@ -1,15 +1,39 @@
-﻿@if (ViewBag.dataFlag==true)
+﻿@using System.Drawing
+@using System.Web.UI.HtmlControls
+@if (ViewBag.dataFlag == true)
 {
     <h2>
-        No student subject data, @Html.ActionLink("Create some...","Index","Student")
+        No student subject data, @Html.ActionLink("Create some...", "Index", "Student")
     </h2>
 }
 else
 {
+
+    using (Html.BeginForm())
     {
-        var myChart = new Chart(width: 600, height: 400, theme: ChartTheme.Vanilla)
-            .AddTitle("Student Averages")
-            .AddSeries(name: "Student marks", xValue: @ViewBag.Names, yValues: ViewBag.Averages)
-            .Write();
+        <h2>Class Overview</h2>
+        <br/>
+        <style>
+            img {
+                border: 2px solid #9da1a8;
+            }
+        </style>
+        <div align="center">
+            @Image()//use this tag to call chart object
+        </div>
     }
 }
+
+<script>
+    function callGraph() {
+        @{
+            var myChart = new Chart(width: 600, height: 400, theme: ChartTheme.Vanilla)
+                .AddTitle("Student Averages")
+                .AddSeries(name: "Student marks", xValue: @ViewBag.Names, yValues: ViewBag.Averages)
+                .Write();
+        }
+    }
+</script>
+
+    
+    

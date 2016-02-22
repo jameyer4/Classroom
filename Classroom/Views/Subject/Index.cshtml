@@ -2,26 +2,27 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Class Overview</h2>
-<br/>
 
 @if(ViewBag.dataFlag==true)
 {
     @ViewBag.errorMessage
 }
 else{
+       
+
+   /* using (Html.BeginForm())
+    {
+         <h2>Class Overview</h2>
+<br/>
+
+    
     <style>
         img {
             border: 2px solid #9da1a8;
         }
     </style>
-
-    using (Html.BeginForm())
-    {
             <div align="center">           
                 <!--Graph can also be drawn from DB data (http://www.w3schools.com/aspnet/webpages_chart.asp)-->
                 <img src='@Url.Action("ChartMain", "Subject")'/>
-            </div>
+            </div>*/
 }
-}
-

@@ -19,12 +19,12 @@ namespace Classroom.Controllers
 
         public SubjectController(List<Subjects> subjects)
         {
-            this.subjectList = subjects;
+            subjectList = subjects;
         }
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("ChartMain");
         }
 #endregion
 
@@ -33,7 +33,7 @@ namespace Classroom.Controllers
         {
             var subjects = db.Subject.ToList();
             var students = db.Student.Where(s=>s.User.Equals(User.Identity.Name)).ToList();
-            ViewBag.errorMessage = "No student subject data to display. Create some...";
+            ViewBag.errorMessage = "No student subject data to display. ";
             ViewBag.dataFlag = false;
 
             double eng = 0, afrik, math = 0, nat = 0, geog = 0, hist = 0, life = 0, sum;

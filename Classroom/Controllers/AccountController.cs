@@ -47,10 +47,10 @@ namespace Classroom.Controllers
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
+                //else
+                //{
+                //    ModelState.AddModelError("", "Invalid username or password.");
+                //}
             }
 
             // If we got this far, something failed, redisplay form
@@ -81,10 +81,10 @@ namespace Classroom.Controllers
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    AddErrors(result);
-                }
+                //else
+                //{
+                //    AddErrors(result);
+                //}
             }
 
             // If we got this far, something failed, redisplay form
@@ -143,10 +143,10 @@ namespace Classroom.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    //else
+                    //{
+                    //    AddErrors(result);
+                    //}
                 }
             }
             else
@@ -165,10 +165,10 @@ namespace Classroom.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    //else
+                    //{
+                    //    AddErrors(result);
+                    //}
                 }
             }
 
