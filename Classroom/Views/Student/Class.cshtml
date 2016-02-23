@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Classroom.Models.Student>
+@{
+    ViewBag.Title = "Class";
+}
+
+<h2>Class</h2>
+
+@if (ViewBag.userFlag)
+{
+    @ViewBag.errorMessage;
+}
+else if (ViewBag.errorFlag)
+{
+    <p>
+        @Html.ActionLink("Create new", "Create")
+    </p>
+    <h4>@ViewBag.errorMessage</h4>
+
+}
+else
+{
+    <p>
+        @Html.ActionLink("Create new", "Create")
+    </p>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayName("Last name") |
+            </th>
+            <th>
+                @Html.DisplayName("First name") |
+            </th>
+            <th>
+                @Html.DisplayName("Age") |
+            </th>
+            <th>
+                @Html.DisplayName("Configure")
+            </th>
+            <th>
+                @Html.DisplayName("Marks")
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+                    @*@Html.ActionLink("Details", "Details", new { id = item.UserId }) |*@
+                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                </td>
+                <td>
+                    @Html.ActionLink("Avrg", "Marks", new {id = item.Id})
+                </td>
+            </tr>
+        }
+    </table>
+    <br/>
+    @Html.ActionLink("Back to Index","Index","Student")
+}

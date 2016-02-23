@@ -2,7 +2,23 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<h2>My Subjects</h2>
+<br/>
+<h4><!--Needs Optimization-->
+    @Html.ActionLink("Math", "Index")
+    <br/><br />
+    @Html.ActionLink("English", "Index")
+    <br /><br />
+    @Html.ActionLink("Afrikaans", "Index")
+    <br /><br />
+    @Html.ActionLink("Natural Science", "Index")
+    <br /><br />
+    @Html.ActionLink("History", "Index")
+    <br /><br />
+    @Html.ActionLink("Geography", "Index")
+    <br /><br />
+    @Html.ActionLink("Life Orientation", "Index")
+</h4>
 @if(ViewBag.dataFlag==true)
 {
     @ViewBag.errorMessage

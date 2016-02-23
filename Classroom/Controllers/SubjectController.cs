@@ -30,7 +30,8 @@ namespace Classroom.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("ChartMain");
+            //return RedirectToAction("ChartMain"); --Uncomment to see average chart
+            return View();
         }
 #endregion
 

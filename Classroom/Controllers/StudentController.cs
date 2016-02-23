@@ -281,5 +281,33 @@ namespace Classroom.Controllers
             return View(subjects);
         }
 #endregion
+
+        public ActionResult Class()
+        {
+            ViewBag.userFlag = false;
+            ViewBag.errorFlag = true;
+            ViewBag.errorMessage = "Go ahead and create a student.";
+
+            if (User.Identity.Name.IsNullOrWhiteSpace())
+            {
+                ViewBag.userFlag = true;
+                ViewBag.errorMessage = "Please login to access student information";
+                return View();
+            }
+            try
+            {
+                var studentGroup = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
+                if (studentGroup.Count > 0)
+                {
+                    ViewBag.errorFlag = false;
+                }
+                return View(studentGroup);
+            }
+            catch (Exception ex)
+            {
+                //Create log for errors
+                return View();
+            }
+        }
     }
 }

@@ -283,6 +283,7 @@
     <Content Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Subject\ChartMain.cshtml" />
     <Content Include="Views\Subject\Chart.cshtml" />
+    <Content Include="Views\Student\Class.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
