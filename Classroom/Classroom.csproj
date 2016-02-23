@@ -282,6 +282,7 @@
     <Content Include="Views\Student\CreateMarks.cshtml" />
     <Content Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Subject\ChartMain.cshtml" />
+    <Content Include="Views\Subject\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

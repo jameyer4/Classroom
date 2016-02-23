@@ -1,0 +1,11 @@
+﻿
+@*@{
+    ViewBag.Title = "Chart";
+}*@
+
+@if (ViewBag.dataFlag == true)
+{
+    <h2>
+        No student subject data, @Html.ActionLink("Create some...", "Index", "Student")
+    </h2>
+}
