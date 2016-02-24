@@ -14,6 +14,10 @@ namespace Classroom
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                "SubjectName",
+                "{controller}/{action}/{subjectName}",
+                new {controller = "Subject", action = "SubjectView", subject = ""});
         }
     }
 }

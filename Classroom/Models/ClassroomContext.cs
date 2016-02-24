@@ -16,6 +16,8 @@ namespace Classroom.Models
         public System.Data.Entity.DbSet<Classroom.Models.Student> Student { get; set; }
 
         public System.Data.Entity.DbSet<Classroom.Models.Subjects> Subject { get; set; }
+
+        public System.Data.Entity.DbSet<Classroom.Models.TaskManager> TaskManager { get; set; }
     }
     
 }

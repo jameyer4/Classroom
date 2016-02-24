@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
 using NSubstitute;
-using NSubstitute.Core;
-
+using NSubstitute.Extensions;
 
 namespace Classroom.Controllers
 {
@@ -28,11 +26,13 @@ namespace Classroom.Controllers
             subjectList = subjects;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             //return RedirectToAction("ChartMain"); --Uncomment to see average chart
             return View();
         }
+
 #endregion
 
 #region ChartMain
@@ -108,6 +108,28 @@ namespace Classroom.Controllers
 
             return View();
         }
+        
 #endregion
+        [HttpGet]
+        [System.Web.Http.Route("Subject/SubjectView/{subject}")]
+        public ActionResult SubjectView(string subject)
+        {            
+            ViewBag.Subject = subject;
+            return View(TaskManager(subject));
+        }
+
+        private List<TaskManager> TaskManager(string subject)
+        {
+            List<TaskManager> model = new List<TaskManager>();
+            var tasks = db.TaskManager.ToList();
+            //var c1 = from ;
+           // var check = db.Subject.Where(x => x.Id.Equals(c1));
+
+            switch (subject)
+            {
+                case "Math": var subjectGroup = model.Where(s => s.SubjectName.Equals(subject)&&s.SubjectsId.Equals())).ToList();        
+            }
+            return (model);
+        }
     }
 }

@@ -1,0 +1,12 @@
+﻿@model List<Classroom.Models.TaskManager>
+@{
+    ViewBag.Title = "SubjectView";
+}
+
+<h2>@ViewBag.Subject</h2>
+
+<h3>Tasks and Assignments</h3>
+
+<div>
+    @Html.Partial("TaskManager")
+</div>
