@@ -12,14 +12,14 @@ namespace Classroom.Controllers
     public class SubjectController : Controller
     {
         private ClassroomContext db = new ClassroomContext();
-        List<Subjects> subjectList = new List<Subjects>();
+        List<Subject> subjectList = new List<Subject>();
 
 #region Constructors and Index
         public SubjectController()
         {
         }
 
-        public SubjectController(List<Subjects> subjects)
+        public SubjectController(List<Subject> subjects)
         {
             subjectList = subjects;
         }
@@ -41,9 +41,10 @@ namespace Classroom.Controllers
             {
                 ViewBag.DataFlag = true;            
             }
-            Subjects subjects = new Subjects();
+            Subject subjects = new Subject();
             ///Needs optimisation
-            bool studMarks = db.Subject.Any(s => s.Mark>0 && db.Student.Select(x=>x.Teacher.Equals(User.Identity.Name)&&x.Id.Equals(s.StudentId)).Distinct().Count()>1);
+            ///Check if the student ha
+            bool studMarks = db.Subject.Any(s => s.Mark>0 && db.Teacher.Select(x=>x.UserName(User.Identity.Name)&&x.Id.Equals(s.StudentId)).Distinct().Count()>1);
             ViewBag.hasMarks = studMarks;
                return View();
             
@@ -116,9 +117,9 @@ namespace Classroom.Controllers
             return View(TaskManager(subject));
         }
 
-        private List<Tasks> TaskManager(string subject)
+        private List<Task> TaskManager(string subject)
         {
-            List<Tasks> model = new List<Tasks>();
+            List<Task> model = new List<Task>();
             var tasks = db.TaskManager.ToList();
             //var c1 = from ;
            // var check = db.Subject.Where(x => x.Id.Equals(c1));
