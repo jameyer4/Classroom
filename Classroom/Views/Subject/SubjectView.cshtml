@@ -6,7 +6,44 @@
 <h2>@ViewBag.Subject</h2>
 
 <h3>Tasks and Assignments</h3>
-
-<div>
-    @Html.Partial("TaskManager")
+<script>
+    $(function() {
+        $("#accordion").accordion({
+            collapsible: true
+        });
+    });
+</script>
+<div id="accordion">
+    @foreach (var item in Model)
+    {
+        <h3>@Html.DisplayFor(modelItem => item.TaskList)</h3>
+        <div>
+            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+            <table>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Date Given")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Submission Data")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Mark")
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.DateGiven)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.SubmissionDate)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.MarkGiven)
+                    </th>
+                </tr>
+            </table>
+        </div>
+    }
+    <h3></h3>
 </div>

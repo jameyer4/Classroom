@@ -5,8 +5,6 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
-using NSubstitute;
-using NSubstitute.Extensions;
 
 namespace Classroom.Controllers
 {
@@ -45,7 +43,7 @@ namespace Classroom.Controllers
             }
             Subjects subjects = new Subjects();
             ///Needs optimisation
-            bool studMarks = db.Subject.Any(s => s.Afrikaans>0 && db.Student.Select(x=>x.User.Equals(User.Identity.Name)&&x.Id.Equals(s.StudentId)).Distinct().Count()>1);
+            bool studMarks = db.Subject.Any(s => s.Mark>0 && db.Student.Select(x=>x.Teacher.Equals(User.Identity.Name)&&x.Id.Equals(s.StudentId)).Distinct().Count()>1);
             ViewBag.hasMarks = studMarks;
                return View();
             
@@ -118,17 +116,17 @@ namespace Classroom.Controllers
             return View(TaskManager(subject));
         }
 
-        private List<TaskManager> TaskManager(string subject)
+        private List<Tasks> TaskManager(string subject)
         {
-            List<TaskManager> model = new List<TaskManager>();
+            List<Tasks> model = new List<Tasks>();
             var tasks = db.TaskManager.ToList();
             //var c1 = from ;
            // var check = db.Subject.Where(x => x.Id.Equals(c1));
 
-            switch (subject)
-            {
-                case "Math": var subjectGroup = model.Where(s => s.SubjectName.Equals(subject)&&s.SubjectsId.Equals())).ToList();        
-            }
+            //switch (subject)
+            //{
+            //    case "Math": var subjectGroup = model.Where(s => s.SubjectName.Equals(subject)&&s.SubjectsId.Equals())).ToList();        
+            //}
             return (model);
         }
     }

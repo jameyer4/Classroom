@@ -5,11 +5,10 @@ using System.Web;
 
 namespace Classroom.Models
 {
-    public partial class TaskManager
+    public partial class Tasks
     {
         public int Id { get; set; }
         public int SubjectsId { get; set; }
-        public string SubjectName { get; set; }
         public DateTime DateGiven { get; set; }
         public DateTime SubmissionDate { get; set; }
         public string TaskName { get; set; }
@@ -17,8 +16,8 @@ namespace Classroom.Models
         public double MarkGiven { get; set; }
     }
 
-    public partial class TaskManager
+    public partial class Tasks
     {
-        public List<TaskManager> TaskList { get; set; } 
+        public List<Tasks> TaskList { get; set; } 
     }
 }
