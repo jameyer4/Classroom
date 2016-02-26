@@ -1,4 +1,5 @@
-﻿@model Classroom.Models.Subjects
+﻿@using System.Activities.Statements
+@model Classroom.Models.Subject
 
 @{
     ViewBag.Title = "CreateMarks";
@@ -15,62 +16,16 @@
         <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.English, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.English)
-                @Html.ValidationMessageFor(model => model.English)
+        @foreach (var item in Model)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Mark)
+                    @Html.ValidationMessageFor(model => model.Mark)
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Afrikaans, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Afrikaans)
-                @Html.ValidationMessageFor(model => model.Afrikaans)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Math, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Math)
-                @Html.ValidationMessageFor(model => model.Math)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NaturalScience, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NaturalScience)
-                @Html.ValidationMessageFor(model => model.NaturalScience)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Geography, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Geography)
-                @Html.ValidationMessageFor(model => model.Geography)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.History, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.History)
-                @Html.ValidationMessageFor(model => model.History)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LifeOrientation, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LifeOrientation)
-                @Html.ValidationMessageFor(model => model.LifeOrientation)
-            </div>
-        </div>
-
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

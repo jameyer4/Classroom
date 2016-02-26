@@ -43,21 +43,20 @@ namespace Classroom.Controllers
             }
             Subject subjects = new Subject();
             ///Needs optimisation
-            ///Check if the student ha
-            bool studMarks = db.Subject.Any(s => s.Mark>0 && db.Teacher.Select(x=>x.UserName(User.Identity.Name)&&x.Id.Equals(s.StudentId)).Distinct().Count()>1);
+            ///Check if the student has 
+
+            bool studMarks = db.Subject.Any(s => s.Mark>0 && db.Teacher.Select(x=>x.UserName.Equals(User.Identity.Name)&&x.Id.Equals(s.Student.Id)).Distinct().Count()>1);
             ViewBag.hasMarks = studMarks;
-               return View();
-            
+               return View(); 
         }
 
         public ActionResult Chart()
         {
             var subjects = db.Subject.ToList();
-            var students = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
+            var students = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
             ViewBag.errorMessage = "No student subject data to display. ";
             ViewBag.dataFlag = false;
 
-            double eng = 0, afrik, math = 0, nat = 0, geog = 0, hist = 0, life = 0, sum;
             List<double> averages = new List<double>();
             List<string> names = new List<string>();
             int count = 0;
@@ -67,18 +66,17 @@ namespace Classroom.Controllers
                 try
                 {
                     var studId = students[count].Id;
-                    if (x.StudentId.Equals(studId))
+                    if (x.Student.Id.Equals(studId))
                     {
-                        eng = x.English;
-                        afrik = x.Afrikaans;
-                        math = x.Math;
-                        geog = x.Geography;
-                        hist = x.History;
-                        life = x.LifeOrientation;
-                        nat = x.NaturalScience;
-                        sum = afrik + eng + life + math + nat + geog + hist;
+                        var classSubj = db.Subject.Where(s => s.Class.Id.Equals(studId)).ToList();
+                        double mark = 0, sum = 0;
+                        for (int i = 0; i < classSubj.Count; i++)
+                        {
+                            mark = classSubj[i].Mark;
+                            sum += mark;
+                        }
                         averages.Add(sum/7);
-                        var stud = db.Student.Find(x.StudentId);
+                        var stud = db.Student.Find(x.Student.Id);
                         names.Add(stud.FirstName + " " + stud.LastName);
                     }
                     count++;
@@ -120,7 +118,7 @@ namespace Classroom.Controllers
         private List<Task> TaskManager(string subject)
         {
             List<Task> model = new List<Task>();
-            var tasks = db.TaskManager.ToList();
+            var tasks = db.Tasks.ToList();
             //var c1 = from ;
            // var check = db.Subject.Where(x => x.Id.Equals(c1));
 

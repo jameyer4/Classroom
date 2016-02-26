@@ -80,6 +80,11 @@ namespace Classroom.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
+                    Teacher teacher = new Teacher
+                    {
+                        UserName = user.UserName,
+                        Name = user.Name
+                    };
                     return RedirectToAction("Index", "Home");
                 }
                 //else
@@ -333,6 +338,7 @@ namespace Classroom.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            return null;
         }
 
         private void AddErrors(IdentityResult result)
