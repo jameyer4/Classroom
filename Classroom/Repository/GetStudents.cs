@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
 using NSubstitute;
+using NSubstitute.Core;
 using NSubstitute.Extensions;
 
 namespace Classroom.Repository
@@ -26,9 +28,10 @@ namespace Classroom.Repository
             return student;
         }
 
-        public List<Student> GetStudentsByUser(string user)
+        public List<Student> GetStudentsByTeacher(string user)
         {
-            List<Student> students = _db.Student.Where(x => x.User.Equals(user)).ToList();
+            int tId =_db.Teacher.First(t => t.UserName.Equals(user)).Id;
+            List<Student> students = _db.Student.Where(x => x.Teacher.Id.Equals(tId)).ToList();
             return students;
         }
     }

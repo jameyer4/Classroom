@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Classroom.Models
 {
-    public partial class Tasks
+    public partial class Task
     {
         public int Id { get; set; }
         public int SubjectsId { get; set; }
@@ -16,8 +16,8 @@ namespace Classroom.Models
         public double MarkGiven { get; set; }
     }
 
-    public partial class Tasks
+    public partial class Task
     {
-        public List<Tasks> TaskList { get; set; } 
+        public List<Task> TaskList { get; set; } 
     }
 }

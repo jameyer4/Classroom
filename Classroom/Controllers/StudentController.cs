@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -23,6 +24,7 @@ namespace Classroom.Controllers
 #region Constructors and Index
         public StudentController()
         {
+            db.Database.Log = l => Debug.Write(l);
         }
 
         public StudentController(Student student)
@@ -55,7 +57,7 @@ namespace Classroom.Controllers
                 {
                     ViewBag.errorFlag = false; 
                 }
-                return View(studentGroup);
+                return System.Web.UI.WebControls.View(studentGroup);
             }
             catch (Exception ex)
             {
@@ -182,7 +184,7 @@ namespace Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subjects subjects = new Subjects();
+            Subject subjects = new Subject();
             using (var context = new ClassroomContext())
             {
                 try
@@ -219,7 +221,7 @@ namespace Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subjects subjects = new Subjects();
+            Subject subjects = new Subject();
             using (var context = new ClassroomContext())
             {
                 try
@@ -242,7 +244,7 @@ namespace Classroom.Controllers
         //POST: /Student/EditMarks/5
         [HttpPost, ActionName("EditMarks")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMarks([Bind(Include = "Id,StudentId,English, Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")]Subjects subjects)
+        public ActionResult EditMarks([Bind(Include = "Id,StudentId,English, Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")]Subject subjects)
         {
             if (ModelState.IsValid)
             {
@@ -264,7 +266,7 @@ namespace Classroom.Controllers
 
         //POST:/Student/Create<arks/5
         [HttpPost]
-        public ActionResult CreateMarks([Bind(Include = "Id,StudentId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subjects subjects)
+        public ActionResult CreateMarks([Bind(Include = "Id,StudentId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subject subjects)
         {
             
             if (ModelState.IsValid)
@@ -301,7 +303,7 @@ namespace Classroom.Controllers
                 {
                     ViewBag.errorFlag = false;
                 }
-                return View(studentGroup);
+                return System.Web.UI.WebControls.View(studentGroup);
             }
             catch (Exception ex)
             {
