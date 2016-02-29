@@ -9,7 +9,7 @@ namespace Classroom.Migrations
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
     public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
@@ -23,7 +23,7 @@ namespace Classroom.Migrations
         
         string IMigrationMetadata.Target
         {
-            get { return Resources.GetString("Target"); }
+            get { return resources.GetString("Target"); }
         }
     }
 }

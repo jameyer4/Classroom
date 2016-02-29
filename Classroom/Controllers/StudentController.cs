@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
+using NUnit.Framework;
+using WebGrease.Activities;
+
 
 namespace Classroom.Controllers
 {
@@ -49,12 +52,12 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+                var studentGroup = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false; 
                 }
-                return View(studentGroup);
+                return System.Web.UI.WebControls.View(studentGroup);
             }
             catch (Exception ex)
             {
@@ -65,15 +68,15 @@ namespace Classroom.Controllers
             
         }
 
-#endregion
-
-#region Create, Edit and Delete student
         public ActionResult Create()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,Teacher")] Student student)
+#endregion
+
+#region Create, Edit and Delete student
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,User")] Student student)
         {
             ViewBag.userFlag = false;
             string lName = Request.Form.Get("LastNameInput");
@@ -85,7 +88,7 @@ namespace Classroom.Controllers
                 student.FirstName = fName;
                 student.LastName = lName;
                 student.Age = age;
-                student.TeacherId = db.Teacher.Single(t => t.UserName.Equals(user)).Id;
+                student.User = user;
             }
             catch (Exception ex)
             {
@@ -95,7 +98,7 @@ namespace Classroom.Controllers
             {
                 student.Id = 1;
             }
-            if (student.Teacher.UserName.IsNullOrWhiteSpace())
+            if (student.User.IsNullOrWhiteSpace())
             {
                 ViewBag.errorMessage = "Please login to create student.";
                 ViewBag.userFlag = true;
@@ -175,34 +178,38 @@ namespace Classroom.Controllers
 
 #region Find student marks
         //GET: /Student/Marks/5
-
         public ActionResult Marks(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List<Subject> studSubs = null;
+            Subject subjects = new Subject();
             using (var context = new ClassroomContext())
             {
                 try
                 {
-                    studSubs = db.Subject.Where(s => s.Id.Equals(id)).ToList();
+                    subjects = (from subs in context.Subject
+                        where subs.StudentId == id
+                        select subs).First();
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Student has no marks to show.");
-                    if (studSubs==null)
+                    if (subjects.Id == 0)
                     {
                         return RedirectToAction("CreateMarks",new {StudentId=id});
                     }
+                    ModelState.AddModelError("","Student has no marks to show.");
 
                     return RedirectToAction("Index"); ;
                 }
 
             }
-
-            return View(studSubs);                        
+            if (subjects == null)
+            {
+                return HttpNotFound();
+            }
+            return View(subjects);                        
         }
 #endregion
 
@@ -214,12 +221,15 @@ namespace Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            Subject subjects = new Subject();
             using (var context = new ClassroomContext())
             {
                 try
                 {
-                    List<Subject> studSubs = db.Subject.Where(s => s.Id.Equals(id)).ToList();
-                    return View(studSubs);
+                    subjects = (from subs in context.Subject
+                                where subs.StudentId == id
+                                select subs).First();
+                    return View(subjects);
                 }
                 catch (Exception ex)
                 {
@@ -234,7 +244,7 @@ namespace Classroom.Controllers
         //POST: /Student/EditMarks/5
         [HttpPost, ActionName("EditMarks")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMarks([Bind(Include = "Id,StudentId,Name,Mark,TeacherId,ClassId")]Subject subjects)
+        public ActionResult EditMarks([Bind(Include = "Id,StudentId,English, Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")]Subject subjects)
         {
             if (ModelState.IsValid)
             {
@@ -242,11 +252,9 @@ namespace Classroom.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //return subjects;
             return View(subjects);
         }
-
-        #endregion
+#endregion
 
 #region Create marks
         //GET: /Student/CreateMarks
@@ -256,9 +264,9 @@ namespace Classroom.Controllers
                 return View();
         }
 
-        //POST:/Student/CreateMarks/5
+        //POST:/Student/Create<arks/5
         [HttpPost]
-        public ActionResult CreateMarks([Bind(Include = "Id,StudentId,Name,Mark,TeacherId,ClassId")] Subject subjects)
+        public ActionResult CreateMarks([Bind(Include = "Id,StudentId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subject subjects)
         {
             
             if (ModelState.IsValid)
@@ -290,12 +298,12 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+                var studentGroup = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false;
                 }
-                return View(studentGroup);
+                return System.Web.UI.WebControls.View(studentGroup);
             }
             catch (Exception ex)
             {
