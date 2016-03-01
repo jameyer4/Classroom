@@ -1,42 +1,30 @@
 ﻿@using System.Threading
-@model Classroom.Models.Subjects
+@model List<Classroom.Models.DB_Models.Subject>
 @{
     ViewBag.Title = "Marks";
 }
 <h2>Marks</h2>
 
 <p>
-    @Html.ActionLink("Edit marks", "EditMarks",new {id = Model.Id})
+    @Html.ActionLink("Edit marks", "EditMarks")
 </p>
+@foreach (var item in Model)
+{
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayName(item.Name)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </th>
+        </tr>
+    </table>
+}
 <table>
 
-    <tr>
-        <th>@Html.DisplayName("English")</th>
-        <th>@Html.DisplayFor(model => model.English)</th>
-    </tr>
-    <tr>
-        <th>@Html.DisplayName("Math")</th>
-        <th>@Html.DisplayFor(model => model.Math)</th>
-    </tr>
-    <tr>
-        <th>@Html.DisplayName("Afrikaans")</th>
-        <th>@Html.DisplayFor(model => model.Afrikaans)</th>
-    </tr>
-    <tr>
-        <th>@Html.DisplayName("Natural Science")</th>
-        <th>@Html.DisplayFor(model => model.NaturalScience)</th>
-    </tr>
-    <tr>
-        <th>@Html.DisplayName("Geography")</th>
-        <th>@Html.DisplayFor(model => model.Geography)</th>
-    </tr>
-    <tr>
-        <th>@Html.DisplayName("History")</th>
-        <th>@Html.DisplayFor(model => model.History)</th>
-    </tr>
-    <tr>
-        <th>@Html.DisplayName("Life Orientation")</th>
-        <th>@Html.DisplayFor(model => model.LifeOrientation)</th>
-    </tr>
+    
 </table>
 

@@ -7,10 +7,8 @@ using System.Net;
 using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
-using NUnit.Framework;
-using WebGrease.Activities;
-
+using Classroom.Models.DB_Models;
+using Classroom.Repository;
 
 namespace Classroom.Controllers
 {
@@ -52,12 +50,12 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
+                var studentGroup = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false; 
                 }
-                return System.Web.UI.WebControls.View(studentGroup);
+                return View(studentGroup);
             }
             catch (Exception ex)
             {
@@ -67,7 +65,6 @@ namespace Classroom.Controllers
             
             
         }
-
         public ActionResult Create()
         {
             return View();
@@ -76,29 +73,33 @@ namespace Classroom.Controllers
 
 #region Create, Edit and Delete student
         [System.Web.Mvc.HttpPost]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Age,User")] Student student)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Age,Teacher")] Student student)
         {
+            GetTeachers teacher = new GetTeachers();
             ViewBag.userFlag = false;
-            string lName = Request.Form.Get("LastNameInput");
-            string fName = Request.Form.Get("FirstNameInput");
-            int age = Convert.ToInt32(Request.Form.Get("AgeInput"));
+            string lName = Request.Form.Get("LastName");
+            string fName = Request.Form.Get("FirstName");
+            int age = Convert.ToInt32(Request.Form.Get("Age"));
             try
             {
-                string user = User.Identity.GetUserName();
+                
+                var sTeacher = teacher.GetTeacherByUsername(User.Identity.Name);
                 student.FirstName = fName;
                 student.LastName = lName;
                 student.Age = age;
-                student.User = user;
+                student.TeacherId = sTeacher.Id;
+                //student.Teacher = sTeacher;
             }
             catch (Exception ex)
             {
-                throw ex;
+                ViewBag.errorMessage = "Cannot find Teacher.";
+                return View();
             }
             if (student.Id == 0)
             {
                 student.Id = 1;
             }
-            if (student.User.IsNullOrWhiteSpace())
+            if (teacher.GetTeacherById(student.TeacherId).UserName.IsNullOrWhiteSpace())
             {
                 ViewBag.errorMessage = "Please login to create student.";
                 ViewBag.userFlag = true;
@@ -178,38 +179,21 @@ namespace Classroom.Controllers
 
 #region Find student marks
         //GET: /Student/Marks/5
-        public ActionResult Marks(int? id)
+        public ActionResult Marks(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Subject subjects = new Subject();
-            using (var context = new ClassroomContext())
-            {
-                try
-                {
-                    subjects = (from subs in context.Subject
-                        where subs.StudentId == id
-                        select subs).First();
-                }
-                catch (Exception ex)
-                {
-                    if (subjects.Id == 0)
-                    {
-                        return RedirectToAction("CreateMarks",new {StudentId=id});
-                    }
-                    ModelState.AddModelError("","Student has no marks to show.");
+            GetSubjects getSubs = new GetSubjects();
 
-                    return RedirectToAction("Index"); ;
-                }
-
-            }
-            if (subjects == null)
+            List<Subject> subjects = new List<Subject>();
+            
+            subjects = getSubs.GetSubjectsById(id);
+            if (getSubs.GetSubjectsById(id).Count<1)
             {
-                return HttpNotFound();
+                ModelState.AddModelError("", "Student has no marks to show.");
+                return RedirectToAction("CreateMarks",new {StudentId=id});
             }
-            return View(subjects);                        
+
+            ViewBag.SubList = subjects;
+            return View();                        
         }
 #endregion
 
@@ -244,7 +228,7 @@ namespace Classroom.Controllers
         //POST: /Student/EditMarks/5
         [HttpPost, ActionName("EditMarks")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMarks([Bind(Include = "Id,StudentId,English, Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")]Subject subjects)
+        public ActionResult EditMarks([Bind(Include = "Id,Name,StudentId,TeacherId")]Subject subjects)
         {
             if (ModelState.IsValid)
             {
@@ -268,7 +252,7 @@ namespace Classroom.Controllers
         [HttpPost]
         public ActionResult CreateMarks([Bind(Include = "Id,StudentId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subject subjects)
         {
-            
+
             if (ModelState.IsValid)
             {
                 db.Subject.Add(subjects);
@@ -298,12 +282,12 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Student.Where(s => s.User.Equals(User.Identity.Name)).ToList();
+                var studentGroup = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false;
                 }
-                return System.Web.UI.WebControls.View(studentGroup);
+                return View(studentGroup);
             }
             catch (Exception ex)
             {

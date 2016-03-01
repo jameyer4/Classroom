@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Classroom.Models
 {
-    public partial class Task
+    public partial class TaskManager
     {
         public int Id { get; set; }
         public int SubjectsId { get; set; }
@@ -16,8 +14,8 @@ namespace Classroom.Models
         public double MarkGiven { get; set; }
     }
 
-    public partial class Task
+    public partial class TaskManager
     {
-        public List<Task> TaskList { get; set; } 
+        public List<TaskManager> TaskList { get; set; } 
     }
 }
