@@ -11,14 +11,14 @@ namespace Classroom.Repository
 
         public List<Subject> GetAllSubjects()
         {
-            List<Subject> subjects = _db.Subject.ToList();
+            List<Subject> subjects = _db.Subjects.ToList();
             return subjects;
         }
 
         public List<Subject> GetSubjectsById(int id)
         {
-            Subject sub = new Subject();
-            var list = sub.SubjectList;
+            //Subject sub = new Subject();
+            var list = _db.Subjects.Where(s => s.Id.Equals(id)).ToList();
             return list;
         }
 

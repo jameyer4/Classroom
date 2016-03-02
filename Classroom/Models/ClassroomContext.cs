@@ -10,15 +10,17 @@ namespace Classroom.Models
         //    Database.SetInitializer<ClassroomContext>(null);
         //}
 
-        public DbSet<Student> Student { get; set; }
+        public DbSet<Student> Students { get; set; }
 
-        public DbSet<Subject> Subject { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         public DbSet<TaskManager> Tasks { get; set; }
 
         public DbSet<Teacher> Teacher { get; set; }
 
         public DbSet<Class> Class { get; set; }
+
+        public DbSet<StudentMark> StudentMark { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

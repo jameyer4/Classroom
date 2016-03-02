@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Classroom.Models.DB_Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Classroom.Models
 {
     public class Student
     {
-        
         public int Id { get; set; }
         [Required]
         [Display(Name = "FirstName")]
@@ -17,5 +17,7 @@ namespace Classroom.Models
         public int Age { get; set; }
         public int TeacherId { get; set; }
         public virtual Teacher Teacher { get; set; }
+        public int StudentMarkId { get; set; }
+        public virtual StudentMark StudentMark { get; set; }
     }
 }

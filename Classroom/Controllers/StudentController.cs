@@ -50,7 +50,7 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+                var studentGroup = db.Students.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false; 
@@ -62,8 +62,6 @@ namespace Classroom.Controllers
                 //Create log for errors
                 return View();
             }
-            
-            
         }
         public ActionResult Create()
         {
@@ -72,10 +70,11 @@ namespace Classroom.Controllers
 #endregion
 
 #region Create, Edit and Delete student
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         public ActionResult Create([Bind(Include = "FirstName,LastName,Age,Teacher")] Student student)
         {
             GetTeachers teacher = new GetTeachers();
+            GetMarks
             ViewBag.userFlag = false;
             string lName = Request.Form.Get("LastName");
             string fName = Request.Form.Get("FirstName");
@@ -109,7 +108,7 @@ namespace Classroom.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Student.Add(student);
+                db.Students.Add(student);
                 if (student.ToString().IsNullOrWhiteSpace())
                 {
                     throw new ArgumentException("Student values not complete");
@@ -128,7 +127,7 @@ namespace Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Student.Find(id);
+            Student student = db.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -157,7 +156,7 @@ namespace Classroom.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Student.Find(id);
+            Student student = db.Students.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -170,8 +169,8 @@ namespace Classroom.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            Student student = db.Student.Find(id);
-            db.Student.Remove(db.Student.Find(id));
+            Student student = db.Students.Find(id);
+            db.Students.Remove(db.Students.Find(id));
             db.SaveChanges();   
             return RedirectToAction("Index");
         }
@@ -210,7 +209,7 @@ namespace Classroom.Controllers
             {
                 try
                 {
-                    subjects = (from subs in context.Subject
+                    subjects = (from subs in context.Subjects
                                 where subs.StudentId == id
                                 select subs).First();
                     return View(subjects);
@@ -250,13 +249,41 @@ namespace Classroom.Controllers
 
         //POST:/Student/Create<arks/5
         [HttpPost]
-        public ActionResult CreateMarks([Bind(Include = "Id,StudentId,English,Afrikaans,Math,NaturalScience,Geography,History,LifeOrientation")] Subject subjects)
+        public ActionResult CreateMarks([Bind(Include = "Id,Name")] Subject subject)
         {
+
+            GetStudents student = new GetStudents();
+            ViewBag.userFlag = false;
+            string name = Request.Form.Get("Name");
+            try
+            {
+                subject.Name = name;
+                subject.StudentId = student.GetStudentById().Id;
+                subject.Age = age;
+                subject.TeacherId = sTeacher.Id;
+                //student.Teacher = sTeacher;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.errorMessage = "Cannot find Teacher.";
+                return View();
+            }
+            if (student.Id == 0)
+            {
+                student.Id = 1;
+            }
+            if (teacher.GetTeacherById(student.TeacherId).UserName.IsNullOrWhiteSpace())
+            {
+                ViewBag.errorMessage = "Please login to create student.";
+                ViewBag.userFlag = true;
+                return View();
+            }
+            //student.User=
 
             if (ModelState.IsValid)
             {
-                db.Subject.Add(subjects);
-                if (subjects.ToString().IsNullOrWhiteSpace())
+                db.Students.Add(student);
+                if (student.ToString().IsNullOrWhiteSpace())
                 {
                     throw new ArgumentException("Student values not complete");
                 }
@@ -264,7 +291,7 @@ namespace Classroom.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(subjects);
+            return View(student);
         }
 #endregion
 
@@ -282,7 +309,7 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+                var studentGroup = db.Students.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false;

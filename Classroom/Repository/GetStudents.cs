@@ -18,20 +18,20 @@ namespace Classroom.Repository
 
         public List<Student> GetAllStudents()
         {
-            List<Student> students = _db.Student.ToList();
+            List<Student> students = _db.Students.ToList();
             return students;
         }
 
         public Student GetStudentById(int id)
         {
-            Student student = _db.Student.Single(x => x.Id == id);
+            Student student = _db.Students.Single(x => x.Id == id);
             return student;
         }
 
         public List<Student> GetStudentsByTeacher(string user)
         {
             int tId =_db.Teacher.First(t => t.UserName.Equals(user)).Id;
-            List<Student> students = _db.Student.Where(x => x.Teacher.Id.Equals(tId)).ToList();
+            List<Student> students = _db.Students.Where(x => x.Teacher.Id.Equals(tId)).ToList();
             return students;
         }
     }

@@ -79,6 +79,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -201,6 +203,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ClassroomEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassroomEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassroomEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassroomEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassroomEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -216,16 +233,33 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DB_Models\Class.cs" />
     <Compile Include="Models\ClassroomContext.cs" />
+    <Compile Include="Models\DB_Models\StudentMarks.cs" />
     <Compile Include="Models\DB_Models\Subject.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\DB_Models\Student.cs" />
     <Compile Include="Models\DB_Models\TaskManager.cs" />
     <Compile Include="Models\DB_Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GetMarks.cs" />
     <Compile Include="Repository\GetStudents.cs" />
     <Compile Include="Repository\GetSubjects.cs" />
     <Compile Include="Repository\GetTeachers.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Student.cs">
+      <DependentUpon>ClassroomEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentMark.cs">
+      <DependentUpon>ClassroomEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject.cs">
+      <DependentUpon>ClassroomEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Task.cs">
+      <DependentUpon>ClassroomEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher.cs">
+      <DependentUpon>ClassroomEDM.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ClassroomDB.mdf" />
@@ -234,6 +268,17 @@
     </Content>
     <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="App_Readme\Spring.Social.Core.txt" />
+    <Content Include="ClassroomEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
+      <LastGenOutput>ClassroomEDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ClassroomEDM.edmx.sql" />
+    <Content Include="ClassroomEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
+      <LastGenOutput>ClassroomEDM.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -243,6 +288,13 @@
     <Content Include="NuGet\NuGetPackage.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="ClassroomEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClassroomEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ClassroomEDM.edmx.diagram">
+      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -307,6 +359,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>

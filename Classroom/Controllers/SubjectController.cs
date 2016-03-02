@@ -43,18 +43,18 @@ namespace Classroom.Controllers
                 ViewBag.DataFlag = true;
             }
             Subject subjects = new Subject();
-            ///Needs optimisation
-            ///Check if the student has 
+            //Needs optimisation
+            //Check if the student has 
 
-            bool studMarks = db.Subject.Any(s => s.Mark > 0 && db.Teacher.Select(x => x.UserName.Equals(User.Identity.Name) && x.Id.Equals(s.Student.Id)).Distinct().Count() > 1);
+            bool studMarks = db.Subjects.Any(s => s.Mark > 0 && db.Teacher.Select(x => x.UserName.Equals(User.Identity.Name) && x.Id.Equals(s.Student.Id)).Distinct().Count() > 1);
             ViewBag.hasMarks = studMarks;
             return View();
         }
 
         public ActionResult Chart()
         {
-            var subjects = db.Subject.ToList();
-            var students = db.Student.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+            var subjects = db.Subjects.ToList();
+            var students = db.Students.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
             ViewBag.errorMessage = "No student subject data to display. ";
             ViewBag.dataFlag = false;
 
@@ -69,7 +69,7 @@ namespace Classroom.Controllers
                     var studId = students[count].Id;
                     if (x.Student.Id.Equals(studId))
                     {
-                        var classSubj = db.Subject.Where(s => s.Class.Id.Equals(studId)).ToList();
+                        var classSubj = db.Subjects.Where(s => s.Class.Id.Equals(studId)).ToList();
                         double mark = 0, sum = 0;
                         for (int i = 0; i < classSubj.Count; i++)
                         {
@@ -77,7 +77,7 @@ namespace Classroom.Controllers
                             sum += mark;
                         }
                         averages.Add(sum / 7);
-                        var stud = db.Student.Find(x.Student.Id);
+                        var stud = db.Students.Find(x.Student.Id);
                         names.Add(stud.FirstName + " " + stud.LastName);
                     }
                     count++;
