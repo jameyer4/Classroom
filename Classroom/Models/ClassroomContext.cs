@@ -18,8 +18,6 @@ namespace Classroom.Models
 
         public DbSet<Teacher> Teacher { get; set; }
 
-        public DbSet<Class> Class { get; set; }
-
         public DbSet<StudentMark> StudentMark { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)

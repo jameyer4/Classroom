@@ -1,23 +1,21 @@
-﻿using Classroom.Models.DB_Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
-namespace Classroom.Models
+namespace Classroom.Models.DB_Models
 {
     public class Student
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        //public Student()
+        //{
+        //    this.StudentMarks = new HashSet<StudentMarks>();
+        //}
+
         public int Id { get; set; }
-        [Required]
-        [Display(Name = "FirstName")]
         public string FirstName { get; set; }
-        [Required]
-        [Display(Name = "LastName")]
         public string LastName { get; set; }
-        [Required]
-        [Display(Name = "Age")]
         public int Age { get; set; }
-        public int TeacherId { get; set; }
-        public virtual Teacher Teacher { get; set; }
-        public int StudentMarkId { get; set; }
-        public virtual StudentMark StudentMark { get; set; }
+        public int MarkId { get; set; }
+
+        public virtual List<StudentMark> StudentMarks { get; set; }
     }
 }

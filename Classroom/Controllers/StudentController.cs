@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 using Classroom.Models;
 using Microsoft.Ajax.Utilities;
 using Classroom.Models.DB_Models;
 using Classroom.Repository;
+using System.Data.Entity;
+using System.Net;
 
 namespace Classroom.Controllers
 {
@@ -18,6 +18,7 @@ namespace Classroom.Controllers
         private ClassroomContext db = new ClassroomContext();
         Student childStudent = new Student(); 
         List<Student> studentList = new List<Student>();
+        GetStudents students = new GetStudents();
 
 #region Constructors and Index
         public StudentController()
@@ -50,7 +51,7 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Students.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+                var studentGroup = students.GetStudentsByTeacherUsername(User.Identity.Name);
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false; 
@@ -67,27 +68,26 @@ namespace Classroom.Controllers
         {
             return View();
         }
-#endregion
+        #endregion
 
-#region Create, Edit and Delete student
+        #region Create, Edit and Delete student
         [HttpPost]
         public ActionResult Create([Bind(Include = "FirstName,LastName,Age,Teacher")] Student student)
         {
             GetTeachers teacher = new GetTeachers();
-            GetMarks
+            GetMarks marks = new GetMarks();
             ViewBag.userFlag = false;
             string lName = Request.Form.Get("LastName");
             string fName = Request.Form.Get("FirstName");
             int age = Convert.ToInt32(Request.Form.Get("Age"));
             try
             {
-                
                 var sTeacher = teacher.GetTeacherByUsername(User.Identity.Name);
+                
                 student.FirstName = fName;
                 student.LastName = lName;
                 student.Age = age;
-                student.TeacherId = sTeacher.Id;
-                //student.Teacher = sTeacher;
+                student.MarkId = sTeacher.Id;
             }
             catch (Exception ex)
             {
@@ -98,17 +98,17 @@ namespace Classroom.Controllers
             {
                 student.Id = 1;
             }
-            if (teacher.GetTeacherById(student.TeacherId).UserName.IsNullOrWhiteSpace())
+            var sMark = marks.GetMarksByStudentId(student.Id);
+            if (User.Identity.Name.IsNullOrWhiteSpace())
             {
                 ViewBag.errorMessage = "Please login to create student.";
                 ViewBag.userFlag = true;
                 return View();
-            }  
-            //student.User=
+            }
 
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
+                db.Students.Add(GetStudent(student));
                 if (student.ToString().IsNullOrWhiteSpace())
                 {
                     throw new ArgumentException("Student values not complete");
@@ -120,7 +120,12 @@ namespace Classroom.Controllers
             return View(student);
         }
 
-        //GET: /Student/Edit/5
+        private static Student GetStudent(Student student)
+        {
+            return student;
+        }
+
+       // GET: /Student/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -171,12 +176,12 @@ namespace Classroom.Controllers
         {
             Student student = db.Students.Find(id);
             db.Students.Remove(db.Students.Find(id));
-            db.SaveChanges();   
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
-#endregion
+        #endregion
 
-#region Find student marks
+        #region Find student marks
         //GET: /Student/Marks/5
         public ActionResult Marks(int id)
         {
@@ -196,48 +201,48 @@ namespace Classroom.Controllers
         }
 #endregion
 
-#region Edit marks
-        //GET: /Student/EditMarks/5
-        public ActionResult EditMarks(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Subject subjects = new Subject();
-            using (var context = new ClassroomContext())
-            {
-                try
-                {
-                    subjects = (from subs in context.Subjects
-                                where subs.StudentId == id
-                                select subs).First();
-                    return View(subjects);
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", "Student has no marks to show.");
-                    RedirectToAction("Index");
-                    return View();
-                }
+//#region Edit marks
+//        GET: /Student/EditMarks/5
+//        public ActionResult EditMarks(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//            }
+//            Subject subjects = new Subject();
+//            using (var context = new ClassroomContext())
+//            {
+//                try
+//                {
+//                    subjects = (from subs in context.Subjects
+//                                where subs.StudentId == id
+//                                select subs).First();
+//                    return View(subjects);
+//                }
+//                catch (Exception ex)
+//                {
+//                    ModelState.AddModelError("", "Student has no marks to show.");
+//                    RedirectToAction("Index");
+//                    return View();
+//                }
 
-            }
-        }
+//            }
+//        }
 
-        //POST: /Student/EditMarks/5
-        [HttpPost, ActionName("EditMarks")]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditMarks([Bind(Include = "Id,Name,StudentId,TeacherId")]Subject subjects)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(subjects).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(subjects);
-        }
-#endregion
+//        POST: /Student/EditMarks/5
+//        [HttpPost, ActionName("EditMarks")]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult EditMarks([Bind(Include = "Id,Name,StudentId,TeacherId")]Subject subjects)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                db.Entry(subjects).State = EntityState.Modified;
+//                db.SaveChanges();
+//                return RedirectToAction("Index");
+//            }
+//            return View(subjects);
+//        }
+//#endregion
 
 #region Create marks
         //GET: /Student/CreateMarks
@@ -248,51 +253,51 @@ namespace Classroom.Controllers
         }
 
         //POST:/Student/Create<arks/5
-        [HttpPost]
-        public ActionResult CreateMarks([Bind(Include = "Id,Name")] Subject subject)
-        {
+        //[HttpPost]
+        //public ActionResult CreateMarks([Bind(Include = "Id,Name")] Subject subject)
+        //{
 
-            GetStudents student = new GetStudents();
-            ViewBag.userFlag = false;
-            string name = Request.Form.Get("Name");
-            try
-            {
-                subject.Name = name;
-                subject.StudentId = student.GetStudentById().Id;
-                subject.Age = age;
-                subject.TeacherId = sTeacher.Id;
-                //student.Teacher = sTeacher;
-            }
-            catch (Exception ex)
-            {
-                ViewBag.errorMessage = "Cannot find Teacher.";
-                return View();
-            }
-            if (student.Id == 0)
-            {
-                student.Id = 1;
-            }
-            if (teacher.GetTeacherById(student.TeacherId).UserName.IsNullOrWhiteSpace())
-            {
-                ViewBag.errorMessage = "Please login to create student.";
-                ViewBag.userFlag = true;
-                return View();
-            }
-            //student.User=
+        //    GetStudents student = new GetStudents();
+        //    ViewBag.userFlag = false;
+        //    string name = Request.Form.Get("Name");
+        //    try
+        //    {
+        //        subject.Name = name;
+        //        subject.StudentId = student.GetStudentById().Id;
+        //        subject.Age = age;
+        //        subject.TeacherId = sTeacher.Id;
+        //        //student.Teacher = sTeacher;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.errorMessage = "Cannot find Teacher.";
+        //        return View();
+        //    }
+        //    if (student.Id == 0)
+        //    {
+        //        student.Id = 1;
+        //    }
+        //    if (teacher.GetTeacherById(student.TeacherId).UserName.IsNullOrWhiteSpace())
+        //    {
+        //        ViewBag.errorMessage = "Please login to create student.";
+        //        ViewBag.userFlag = true;
+        //        return View();
+        //    }
+        //    //student.User=
 
-            if (ModelState.IsValid)
-            {
-                db.Students.Add(student);
-                if (student.ToString().IsNullOrWhiteSpace())
-                {
-                    throw new ArgumentException("Student values not complete");
-                }
-                db.SaveChanges();
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Students.Add(student);
+        //        if (student.ToString().IsNullOrWhiteSpace())
+        //        {
+        //            throw new ArgumentException("Student values not complete");
+        //        }
+        //        db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
-            return View(student);
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(student);
+        //}
 #endregion
 
         public ActionResult Class()
@@ -309,7 +314,7 @@ namespace Classroom.Controllers
             }
             try
             {
-                var studentGroup = db.Students.Where(s => s.Teacher.UserName.Equals(User.Identity.Name)).ToList();
+                var studentGroup = students.GetStudentsByTeacherUsername(User.Identity.Name);
                 if (studentGroup.Count > 0)
                 {
                     ViewBag.errorFlag = false;

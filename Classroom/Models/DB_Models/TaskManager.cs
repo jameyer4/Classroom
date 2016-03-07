@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Classroom.Models
+namespace Classroom.Models.DB_Models
 {
     public partial class TaskManager
     {

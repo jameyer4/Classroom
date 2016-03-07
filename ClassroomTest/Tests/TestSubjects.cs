@@ -11,15 +11,15 @@ namespace Classroom.Tests
     public class TestSubjects
     {
         [Test]
-        public void TestChartMain()
-        {
-            var subjects = GetTestSubjectsList();
-            var controller = new SubjectController(subjects);
-            var list = subjects.Select(x => controller.ChartMain()).ToList();
+        //public void TestChartMain()
+        //{
+        //    var subjects = GetTestSubjectsList();
+        //    var controller = new SubjectController(subjects);
+        //    var list = subjects.Select(x => controller.ChartMain()).ToList();
 
-            Assert.AreEqual(subjects.Count, list.Count);
+        //    Assert.AreEqual(subjects.Count, list.Count);
 
-        }
+        //}
 
         public List<Subject> GetTestSubjectsList()
         {

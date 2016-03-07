@@ -203,21 +203,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="ClassroomEDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClassroomEDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClassroomEDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClassroomEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClassroomEDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -231,9 +216,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DB_Models\Class.cs" />
     <Compile Include="Models\ClassroomContext.cs" />
-    <Compile Include="Models\DB_Models\StudentMarks.cs" />
+    <Compile Include="Models\DB_Models\StudentMark.cs" />
     <Compile Include="Models\DB_Models\Subject.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\DB_Models\Student.cs" />
@@ -244,22 +228,8 @@
     <Compile Include="Repository\GetStudents.cs" />
     <Compile Include="Repository\GetSubjects.cs" />
     <Compile Include="Repository\GetTeachers.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Student.cs">
-      <DependentUpon>ClassroomEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StudentMark.cs">
-      <DependentUpon>ClassroomEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subject.cs">
-      <DependentUpon>ClassroomEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Task.cs">
-      <DependentUpon>ClassroomEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Teacher.cs">
-      <DependentUpon>ClassroomEDM.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ClassroomDB.mdf" />
@@ -268,17 +238,6 @@
     </Content>
     <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="App_Readme\Spring.Social.Core.txt" />
-    <Content Include="ClassroomEDM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
-      <LastGenOutput>ClassroomEDM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ClassroomEDM.edmx.sql" />
-    <Content Include="ClassroomEDM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
-      <LastGenOutput>ClassroomEDM.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -288,13 +247,6 @@
     <Content Include="NuGet\NuGetPackage.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="ClassroomEDM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClassroomEDM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="ClassroomEDM.edmx.diagram">
-      <DependentUpon>ClassroomEDM.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

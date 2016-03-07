@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClassroomDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ClassroomDBModelStoreContainer">
+    <EntitySet Name="StudentMarks" EntityType="ClassroomDBModel.Store.StudentMarks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Students" EntityType="ClassroomDBModel.Store.Students" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects" EntityType="ClassroomDBModel.Store.Subjects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tasks" EntityType="ClassroomDBModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Teachers" EntityType="ClassroomDBModel.Store.Teachers" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SubjectTeacher" Association="ClassroomDBModel.Store.SubjectTeacher">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="SubjectTask" Association="ClassroomDBModel.Store.SubjectTask">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="StudentStudentMark" Association="ClassroomDBModel.Store.StudentStudentMark">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentMark" EntitySet="StudentMarks" />
+    </AssociationSet>
+    <AssociationSet Name="StudentMarkSubject" Association="ClassroomDBModel.Store.StudentMarkSubject">
+      <End Role="StudentMark" EntitySet="StudentMarks" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="StudentMarks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+    <Property Name="Mark" Type="float" Nullable="true" />
+    <Property Name="Student_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="Teachers_Id" Type="int" Nullable="false" />
+    <Property Name="StudentMark_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tasks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="DateGiven" Type="datetime" Nullable="false" />
+    <Property Name="SubmissionDate" Type="datetime" Nullable="true" />
+    <Property Name="TaskName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="MarkGiven" Type="int" Nullable="true" />
+    <Property Name="Subject_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SubjectId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="SubjectTeacher">
+    <End Role="Subject" Type="ClassroomDBModel.Store.Subjects" Multiplicity="*" />
+    <End Role="Teacher" Type="ClassroomDBModel.Store.Teachers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="Teachers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubjectTask">
+    <End Role="Subject" Type="ClassroomDBModel.Store.Subjects" Multiplicity="1" />
+    <End Role="Task" Type="ClassroomDBModel.Store.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Subject_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentStudentMark">
+    <End Role="Student" Type="ClassroomDBModel.Store.Students" Multiplicity="1" />
+    <End Role="StudentMark" Type="ClassroomDBModel.Store.StudentMarks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudentMark">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentMarkSubject">
+    <End Role="StudentMark" Type="ClassroomDBModel.Store.StudentMarks" Multiplicity="1" />
+    <End Role="Subject" Type="ClassroomDBModel.Store.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentMark">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="StudentMark_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

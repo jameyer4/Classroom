@@ -8,7 +8,8 @@ namespace Classroom.Repository
     public class GetSubjects
     {
         private readonly ClassroomContext _db = new ClassroomContext();
-
+        //GetMarks marks = new GetMarks();
+        //GetTeachers teachers = new GetTeachers();
         public List<Subject> GetAllSubjects()
         {
             List<Subject> subjects = _db.Subjects.ToList();
@@ -21,6 +22,18 @@ namespace Classroom.Repository
             var list = _db.Subjects.Where(s => s.Id.Equals(id)).ToList();
             return list;
         }
+        public Subject GetSubjectByMarkId(int id)
+        {
+            var subjects = GetSubjectsById(new GetMarks().GetMarksById(id).First().Id).First();
+            return subjects;
+        }
+        public List<Subject> GetSubjectByTeacherId(int id)
+        {
+            var subjects = GetSubjectsById(new GetTeachers().GetTeacherById(id).Id).ToList();
+            return subjects;
+        }
+
+       // public List<Subject> GetSubjectByStudentId()
 
         //public List<Subject> GetStudentsByTeacher(string user)
         //{

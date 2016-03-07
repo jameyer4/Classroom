@@ -15,7 +15,6 @@ namespace Classroom.Models.DB_Models
         public virtual Teacher Teacher { get; set; }
         public double Mark { get; set; }
         [NotMapped]
-        public virtual Class Class { get; set; }
         public int ClassId { get; set; }
     }
     public partial class Subject

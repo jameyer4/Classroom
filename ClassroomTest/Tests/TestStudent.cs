@@ -4,6 +4,7 @@ using System.Linq;
 using Classroom.Controllers;
 using Classroom.Models;
 using NUnit.Framework;
+using Classroom.Models.DB_Models;
 
 namespace Classroom.Tests
 {

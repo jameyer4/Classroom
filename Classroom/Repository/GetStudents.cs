@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Helpers;
-using System.Web.Mvc;
+using Classroom.Models.DB_Models;
 using Classroom.Models;
-using Microsoft.Ajax.Utilities;
-using NSubstitute;
-using NSubstitute.Core;
-using NSubstitute.Extensions;
 
 namespace Classroom.Repository
 {
     public class GetStudents
     {
+      //  GetTeachers teachers = new GetTeachers();
+       // GetMarks marks = new GetMarks();
+       // GetSubjects subjects = new GetSubjects();
+
         private readonly ClassroomContext _db = new ClassroomContext();
 
         public List<Student> GetAllStudents()
@@ -28,10 +25,15 @@ namespace Classroom.Repository
             return student;
         }
 
-        public List<Student> GetStudentsByTeacher(string user)
+        public List<Student> GetStudentsByTeacherUsername(string user)
         {
-            int tId =_db.Teacher.First(t => t.UserName.Equals(user)).Id;
-            List<Student> students = _db.Students.Where(x => x.Teacher.Id.Equals(tId)).ToList();
+            var teacherId = new GetTeachers().GetTeacherIdByUsername(user);
+            var markList = new GetMarks().GetMarksByTeacherId(teacherId);
+            List<Student> students = new List<Student>();
+            foreach(var x in markList)
+            {
+                students.Add(GetStudentById(x.StudentId));
+            }
             return students;
         }
     }
