@@ -18,7 +18,6 @@ namespace Classroom.Controllers
         private ClassroomContext db = new ClassroomContext();
         Student childStudent = new Student(); 
         List<Student> studentList = new List<Student>();
-        GetStudents students = new GetStudents();
 
 #region Constructors and Index
         public StudentController()
@@ -39,6 +38,7 @@ namespace Classroom.Controllers
         [System.Web.Http.Route("Index")]
         public ViewResult Index()
         {
+          
             ViewBag.userFlag = false;
             ViewBag.errorFlag = true;
             ViewBag.errorMessage = "Go ahead and create a student.";
@@ -51,6 +51,7 @@ namespace Classroom.Controllers
             }
             try
             {
+                GetStudents students = new GetStudents();
                 var studentGroup = students.GetStudentsByTeacherUsername(User.Identity.Name);
                 if (studentGroup.Count > 0)
                 {
@@ -72,40 +73,33 @@ namespace Classroom.Controllers
 
         #region Create, Edit and Delete student
         [HttpPost]
-        public ActionResult Create([Bind(Include = "FirstName,LastName,Age,Teacher")] Student student)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Age")] Student student)
         {
-            GetTeachers teacher = new GetTeachers();
-            GetMarks marks = new GetMarks();
             ViewBag.userFlag = false;
             string lName = Request.Form.Get("LastName");
             string fName = Request.Form.Get("FirstName");
             int age = Convert.ToInt32(Request.Form.Get("Age"));
             try
-            {
-                var sTeacher = teacher.GetTeacherByUsername(User.Identity.Name);
-                
+            {                
                 student.FirstName = fName;
                 student.LastName = lName;
                 student.Age = age;
-                student.MarkId = sTeacher.Id;
             }
             catch (Exception ex)
             {
                 ViewBag.errorMessage = "Cannot find Teacher.";
                 return View();
             }
-            if (student.Id == 0)
-            {
-                student.Id = 1;
-            }
-            var sMark = marks.GetMarksByStudentId(student.Id);
+            //if (student.Id == 0)
+            //{
+            //    student.Id = 1;
+            //}
             if (User.Identity.Name.IsNullOrWhiteSpace())
             {
                 ViewBag.errorMessage = "Please login to create student.";
                 ViewBag.userFlag = true;
                 return View();
             }
-
             if (ModelState.IsValid)
             {
                 db.Students.Add(GetStudent(student));
@@ -114,7 +108,15 @@ namespace Classroom.Controllers
                     throw new ArgumentException("Student values not complete");
                 }
                 db.SaveChanges();
-
+                try
+                {
+                    CreateStudentMarks(student.Id);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.errorMessage = "Cannot Create Mark set for " + student.FirstName + ".";
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(student);
@@ -172,10 +174,16 @@ namespace Classroom.Controllers
         //POST: /Student/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Student student = db.Students.Find(id);
             db.Students.Remove(db.Students.Find(id));
+            var marks = new GetMarks().GetMarksByStudentId(id);
+            for (int i = 0; i < marks.Count; i++)
+            {
+                db.StudentMark.Remove(db.StudentMark.Find(marks[i].Id));
+            }
+            
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -247,9 +255,9 @@ namespace Classroom.Controllers
 #region Create marks
         //GET: /Student/CreateMarks
         public ActionResult CreateMarks(int? id)
-            {
-                ViewBag.sId = id;
-                return View();
+        {
+            ViewBag.sId = id;
+            return View();
         }
 
         //POST:/Student/Create<arks/5
@@ -302,6 +310,7 @@ namespace Classroom.Controllers
 
         public ActionResult Class()
         {
+            GetStudents students = new GetStudents();
             ViewBag.userFlag = false;
             ViewBag.errorFlag = true;
             ViewBag.errorMessage = "Go ahead and create a student.";
@@ -325,6 +334,34 @@ namespace Classroom.Controllers
             {
                 //Create log for errors
                 return View();
+            }
+        }
+        public void CreateStudentMarks(int id)
+        {
+            
+            GetTeachers teacher = new GetTeachers();
+            for (int i = 1; i <= 7; i++)
+            {
+                StudentMark sMark = new StudentMark();
+                sMark.SubjectId = i;
+                sMark.StudentId = id;
+                sMark.TeacherId = teacher.GetTeacherIdByUsername(User.Identity.Name);
+                //Marks should be initialized as null
+                if (sMark.Id == 0)
+                {
+                    sMark.Id = i;
+                }
+                if (ModelState.IsValid)
+                {
+                    db.StudentMark.Add(sMark);
+                    if (sMark.ToString().IsNullOrWhiteSpace())
+                    {
+                        throw new ArgumentException("Student values not complete");
+                    }
+              //      db.SaveChanges();
+
+                    //RedirectToAction("Index");
+                }
             }
         }
     }

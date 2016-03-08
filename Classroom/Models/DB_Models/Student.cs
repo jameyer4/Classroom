@@ -9,13 +9,10 @@ namespace Classroom.Models.DB_Models
         //{
         //    this.StudentMarks = new HashSet<StudentMarks>();
         //}
-
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
-        public int MarkId { get; set; }
-
-        public virtual List<StudentMark> StudentMarks { get; set; }
+ //       public virtual List<StudentMark> StudentMarks { get; set; }
     }
 }

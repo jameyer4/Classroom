@@ -7,8 +7,9 @@ namespace Classroom.Models.DB_Models
         public int Id { get; set; }
         public int SubjectId { get; set; }
         public int StudentId { get; set; }
-        [NotMapped]
-        public Subject Subject { get; set; }
-        public double Mark { get; set; }
+       // [NotMapped]
+        //public Subject Subject { get; set; }
+        public double? Mark { get; set; }
+        public int TeacherId { get; set; }
     }
 }

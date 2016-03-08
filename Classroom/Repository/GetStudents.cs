@@ -21,16 +21,16 @@ namespace Classroom.Repository
 
         public Student GetStudentById(int id)
         {
-            Student student = _db.Students.Single(x => x.Id == id);
+            Student student = _db.Students.Where(x => x.Id.Equals(id)).Single();
             return student;
         }
 
         public List<Student> GetStudentsByTeacherUsername(string user)
         {
             var teacherId = new GetTeachers().GetTeacherIdByUsername(user);
-            var markList = new GetMarks().GetMarksByTeacherId(teacherId);
+            var markList = new GetMarks().GetMarksByTeacherId(teacherId).Where(m => m.SubjectId.Equals(1));
             List<Student> students = new List<Student>();
-            foreach(var x in markList)
+            foreach (var x in markList)
             {
                 students.Add(GetStudentById(x.StudentId));
             }
