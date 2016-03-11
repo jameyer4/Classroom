@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -78,6 +79,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -213,17 +216,19 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DB_Models\Class.cs" />
     <Compile Include="Models\ClassroomContext.cs" />
+    <Compile Include="Models\DB_Models\StudentMark.cs" />
+    <Compile Include="Models\DB_Models\Subject.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\DB_Models\Student.cs" />
-    <Compile Include="Models\DB_Models\Subject.cs" />
-    <Compile Include="Models\DB_Models\Task.cs" />
+    <Compile Include="Models\DB_Models\TaskManager.cs" />
     <Compile Include="Models\DB_Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GetMarks.cs" />
     <Compile Include="Repository\GetStudents.cs" />
     <Compile Include="Repository\GetSubjects.cs" />
     <Compile Include="Repository\GetTeachers.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +311,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup>

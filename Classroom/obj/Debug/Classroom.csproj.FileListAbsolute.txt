@@ -279,4 +279,3 @@ D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.Migrations.InitialCreate.re
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csproj.GenerateResource.Cache
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.dll
 D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.pdb
-D:\Git-Repos\Classroom\Classroom\obj\Debug\Classroom.csprojResolveAssemblyReference.cache

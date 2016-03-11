@@ -5,7 +5,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Classroom.Models;
-using Task = Classroom.Models.Task;
 
 namespace Classroom.Controllers
 {
@@ -333,6 +332,7 @@ namespace Classroom.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            return null;
         }
 
         private void AddErrors(IdentityResult result)
