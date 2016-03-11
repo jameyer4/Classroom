@@ -1,42 +1,44 @@
-﻿@model Classroom.Models.Subjects
+﻿@model Classroom.Models.DB_Models.Subject
 @{
     ViewBag.Title = "Index";
 }
 <h2>My Subjects</h2>
 <br/>
 <h4><!--Needs Optimization-->
-    @Html.ActionLink("Math", "SubjectView", "Subject", new { subject = "Math" },null)
-    <br/><br />
-    @Html.ActionLink("English", "SubjectView", "Subject", new { subject = "English" }, null)
-    <br /><br />
-    @Html.ActionLink("Afrikaans", "SubjectView", "Subject", new { subject = "Afrikaans" }, null)
-    <br /><br />
-    @Html.ActionLink("Natural Science", "SubjectView", "Subject", new { subject = "Natural Science" }, null)
-    <br /><br />
-    @Html.ActionLink("History", "SubjectView", "Subject", new { subject = "History" }, null)
-    <br /><br />
-    @Html.ActionLink("Geography", "SubjectView", "Subject", new { subject = "Geography" }, null)
-    <br /><br />
-    @Html.ActionLink("Life Orientation", "SubjectView", "Subject", new { subject = "Life Orientation" }, null)
+    @if (ViewBag.Error)
+    {
+        @ViewBag.ErrorMessage
+    }
+    else
+    {
+        @Html.ActionLink("Assign subjects to user", "AssignSubjects")
+        <br />
+        for (int i = 0; i < ViewBag.mySubjects.Count; i++)
+        {
+            var name = @ViewBag.mySubjects[i].Name;
+            Html.ActionLink((string)name, "SubjectView");
+        }
+    }
 </h4>
 @if(ViewBag.dataFlag==true)
 {
     @ViewBag.errorMessage
 }
-else{
+else
+{
    /* using (Html.BeginForm())
     {
          <h2>Class Overview</h2>
 <br/>
 
-    
     <style>
         img {
             border: 2px solid #9da1a8;
         }
     </style>
-            <div align="center">           
-                <!--Graph can also be drawn from DB data (http://www.w3schools.com/aspnet/webpages_chart.asp)-->
-                <img src='@Url.Action("ChartMain", "Subject")'/>
-            </div>*/
+
+    <div align="center">           
+        <!--Graph can also be drawn from DB data (http://www.w3schools.com/aspnet/webpages_chart.asp)-->
+        <img src='@Url.Action("ChartMain", "Subject")'/>
+    </div>*/
 }

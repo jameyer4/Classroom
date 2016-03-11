@@ -20,6 +20,8 @@ namespace Classroom.Models
 
         public DbSet<StudentMark> StudentMark { get; set; }
 
+        public DbSet<TeacherSubjects> TeacherSubjects { get; set; }
+
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Student>().MapToStoredProcedures();

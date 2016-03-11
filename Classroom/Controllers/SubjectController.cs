@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using Classroom.Models;
-using Microsoft.Ajax.Utilities;
 using Classroom.Models.DB_Models;
+using Classroom.Repository;
+using System;
 
 namespace Classroom.Controllers
 {
@@ -28,6 +27,18 @@ namespace Classroom.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.Error = true;
+            try
+            {
+                var teacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);
+                var subjects = new GetSubjects().GetSubjectByTeacherId(teacherId);
+                ViewBag.mySubjects = subjects;
+                ViewBag.Error = false;
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = "Log in to see your subjects.";
+            }
             //return RedirectToAction("ChartMain"); --Uncomment to see average chart
             return View();
         }
@@ -106,7 +117,30 @@ namespace Classroom.Controllers
 
         //    return View();
         //}
+        [HttpGet]
+        public ActionResult AssignSubjects()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult AssignSubjects([Bind(Include = "Id,Name")] Subject subject)
+        {
+            string subjectName = Request.Form["sDropdown"];
+            var mySubject = new GetSubjects().GetSubjectByName(subjectName);
+            var teacher = new GetTeachers().GetTeacherByUsername(User.Identity.Name);
+
+            TeacherSubjects ts = new TeacherSubjects();
+            ts.SubjectId = mySubject.Id;
+            ts.TeacherId = teacher.Id;
+            if(new GetTeacherSubjects().GetTeacherSubjectByTeacherIdAndSubjectId(ts.TeacherId, ts.SubjectId)== null)
+            {
+                db.TeacherSubjects.Add(ts);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
         //#endregion
         [HttpGet]
         [System.Web.Http.Route("Subject/SubjectView/{subject}")]

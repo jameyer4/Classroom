@@ -219,6 +219,7 @@
     <Compile Include="Models\ClassroomContext.cs" />
     <Compile Include="Models\DB_Models\StudentMark.cs" />
     <Compile Include="Models\DB_Models\Subject.cs" />
+    <Compile Include="Models\DB_Models\TeacherSubjects.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\DB_Models\Student.cs" />
     <Compile Include="Models\DB_Models\TaskManager.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Repository\GetStudents.cs" />
     <Compile Include="Repository\GetSubjects.cs" />
     <Compile Include="Repository\GetTeachers.cs" />
+    <Compile Include="Repository\GetTeacherSubjects.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -296,6 +298,7 @@
     <Content Include="Views\Subject\Chart.cshtml" />
     <Content Include="Views\Student\Class.cshtml" />
     <Content Include="Views\Subject\SubjectView.cshtml" />
+    <Content Include="Views\Subject\AssignSubjects.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

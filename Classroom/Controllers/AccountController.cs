@@ -5,12 +5,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Classroom.Models;
+using Classroom.Models.DB_Models;
+using System;
 
 namespace Classroom.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        ClassroomContext db = new ClassroomContext();
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -74,6 +77,96 @@ namespace Classroom.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    Teacher teacher = new Teacher();
+                    teacher.Name = model.Name;
+                    teacher.UserName = model.UserName;
+                    if(teacher.Id==0)
+                    {
+                        teacher.Id = 1;
+                    }
+                    //var check = Request.Form["subject1"];
+                    if (Request.Form["English"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 1;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if (Request.Form["Afrikaans"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 2;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if (Request.Form["Math"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 3;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if (Request.Form["NS"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 4;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if (Request.Form["LO"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 5;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if (Request.Form["History"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 6;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if (Request.Form["Geography"] == "1")
+                    {
+                        TeacherSubjects ts = new TeacherSubjects();
+                        ts.SubjectId = 7;
+                        ts.TeacherId = teacher.Id;
+                        if (ModelState.IsValid)
+                        {
+                            db.TeacherSubjects.Add(ts);
+                        }
+                    }
+                    if(ModelState.IsValid)
+                    {
+                        db.Teacher.Add(teacher);
+                    }
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    
+                }
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -81,10 +174,10 @@ namespace Classroom.Controllers
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
-                //else
-                //{
-                //    AddErrors(result);
-                //}
+                else
+                {
+                    AddErrors(result);
+                }
             }
 
             // If we got this far, something failed, redisplay form

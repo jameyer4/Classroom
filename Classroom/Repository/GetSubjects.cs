@@ -33,6 +33,12 @@ namespace Classroom.Repository
             return subjects;
         }
 
+        public Subject GetSubjectByName(string name)
+        {
+            var subject = _db.Subjects.Where(s => s.Name.Equals(name)).Single();
+            return subject;
+        }
+
        // public List<Subject> GetSubjectByStudentId()
 
         //public List<Subject> GetStudentsByTeacher(string user)

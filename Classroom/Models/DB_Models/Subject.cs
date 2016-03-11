@@ -7,8 +7,8 @@ namespace Classroom.Models.DB_Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual Student Student { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        //public virtual Student Student { get; set; }
+        //public virtual Teacher Teacher { get; set; }
     }
     public partial class Subject
     {
