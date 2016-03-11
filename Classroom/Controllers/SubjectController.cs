@@ -33,6 +33,7 @@ namespace Classroom.Controllers
                 var teacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);
                 var subjects = new GetSubjects().GetSubjectByTeacherId(teacherId);
                 ViewBag.mySubjects = subjects;
+
                 ViewBag.Error = false;
             }
             catch(Exception ex)
