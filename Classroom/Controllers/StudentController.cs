@@ -197,8 +197,8 @@ namespace Classroom.Controllers
 
             List<Subject> subjects = new List<Subject>();
             
-            subjects = getSubs.GetSubjectsById(id);
-            if (getSubs.GetSubjectsById(id).Count<1)
+            subjects = getSubs.GetSubjectsByStudentId(id).ToList();
+            if (subjects.Count<1)
             {
                 ModelState.AddModelError("", "Student has no marks to show.");
                 return RedirectToAction("CreateMarks",new {StudentId=id});

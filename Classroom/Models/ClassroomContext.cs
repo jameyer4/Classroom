@@ -14,13 +14,15 @@ namespace Classroom.Models
 
         public DbSet<Subject> Subjects { get; set; }
 
-        public DbSet<TaskManager> Tasks { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
 
         public DbSet<Teacher> Teacher { get; set; }
 
         public DbSet<StudentMark> StudentMark { get; set; }
 
         public DbSet<TeacherSubjects> TeacherSubjects { get; set; }
+
+        public DbSet<StudentTasks> StudentTasks { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

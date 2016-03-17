@@ -218,6 +218,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClassroomContext.cs" />
     <Compile Include="Models\DB_Models\StudentMark.cs" />
+    <Compile Include="Models\DB_Models\StudentTasks.cs" />
     <Compile Include="Models\DB_Models\Subject.cs" />
     <Compile Include="Models\DB_Models\TeacherSubjects.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -227,9 +228,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GetMarks.cs" />
     <Compile Include="Repository\GetStudents.cs" />
+    <Compile Include="Repository\GetStudentTasks.cs" />
     <Compile Include="Repository\GetSubjects.cs" />
     <Compile Include="Repository\GetTeachers.cs" />
     <Compile Include="Repository\GetTeacherSubjects.cs" />
+    <Compile Include="Repository\GetTeacherTasks.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -243,6 +246,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\jquery-ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -250,13 +258,14 @@
     <Content Include="NuGet\NuGetPackage.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -296,12 +305,14 @@
     <Content Include="Views\Student\Marks.cshtml" />
     <Content Include="Views\Student\EditMarks.cshtml" />
     <Content Include="Views\Student\CreateMarks.cshtml" />
-    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\AddTask.cshtml" />
+    <None Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Subject\ChartMain.cshtml" />
     <Content Include="Views\Subject\Chart.cshtml" />
     <Content Include="Views\Student\Class.cshtml" />
     <Content Include="Views\Subject\SubjectView.cshtml" />
     <Content Include="Views\Subject\AssignSubjects.cshtml" />
+    <Content Include="Views\Subject\StudentTasks.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

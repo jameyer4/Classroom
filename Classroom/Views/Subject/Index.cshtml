@@ -2,25 +2,23 @@
 @{
     ViewBag.Title = "Index";
 }
-<head>
-  <meta charset="utf-8">
-  <title>jQuery UI Accordion - Sortable</title>
+
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   @*<link rel="stylesheet" href="/resources/demos/style.css">*@
+  @*<link href="~/Content/jquery-ui.css" rel="stylesheet" />*@
+
   <style>
   /* IE has layout issues when sorting (see #5413) */
   .group { zoom: 1 }
   </style>
   <script>
-      $(document).ready(function () {
-          $("#accordion").accordion();
-      });
       $(function() {
         $( "#accordion" )
           .accordion({
-            header: "> div > h3"
+              header: "> div > h3",
+              collapsible: true
           })
           .sortable({
             axis: "y",
@@ -36,7 +34,7 @@
           });
       });
   </script>
-</head>
+
 <h2>My Subjects</h2>
 <br/>
 <h4><!--Needs Optimization-->
@@ -53,16 +51,63 @@
 <h4>
     <u>My Subjects:</u>
 </h4>
-<h4>
+
+    <div id="accordion">
     @for (int i = 0; i < ViewBag.mySubjects.Count; i++)
     {
-        var name = @ViewBag.mySubjects[i].Name;
-        var sId = @ViewBag.mySubjects[i].Id;
-        <td>
-            @Html.ActionLink((string)name, "SubjectView", new { id = sId })
-        </td>
+        var name = ViewBag.mySubjects[i].Name;
+        var sId = ViewBag.mySubjects[i].Id;
+        var tasks = ViewBag.myTasks;
+        <div class="group">
+            <h3>@Html.ActionLink((string)name, "SubjectView", new { id = sId })</h3>
+            <div>
+               @* <p>Tasks to be included here...</p>*@
+                @Html.ActionLink("Add new task", "AddTask",new { id = sId })
+
+                <table>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Date Given")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Submission Date")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Task Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Description")
+                        </th>
+                    </tr>
+                @for (int j = 0; j < tasks.Count; j++)
+                {
+                    if (tasks[j].SubjectId == sId)
+                    {
+                        <tr>
+                            <th>
+                                <h5> @tasks[j].DateGiven.Date</h5>
+                            </th>
+                            <th>
+                                <h5> @tasks[j].SubmissionDate.Date</h5>
+                            </th>
+                            <th>
+                                <h5> @tasks[j].TaskName</h5>
+                            </th>
+                            <th>
+                                <h5> @tasks[j].Description</h5>
+                            </th>
+                            <th>
+                                @Html.ActionLink("Show student marks for this task", "StudentTasks", new { id = tasks[j].Id })
+                            </th>
+                        </tr>
+                    }
+                }
+                    </table>
+            </div>
+        </div>
     }
-</h4>
+    </div>
+
 
 @if(ViewBag.dataFlag==true)
 {
@@ -86,36 +131,3 @@ else
         <img src='@Url.Action("ChartMain", "Subject")'/>
     </div>*/
 }
-
-
-<div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-sortable" role="tablist">
-    <div class="group">
-        <h3>Section 1</h3>
-        <div>
-            <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
-        </div>
-    </div>
-    <div class="group">
-        <h3>Section 2</h3>
-        <div>
-            <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
-        </div>
-    </div>
-    <div class="group">
-        <h3>Section 3</h3>
-        <div>
-            <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
-            <ul>
-                <li>List item one</li>
-                <li>List item two</li>
-                <li>List item three</li>
-            </ul>
-        </div>
-    </div>
-    <div class="group">
-        <h3>Section 4</h3>
-        <div>
-            <p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-        </div>
-    </div>
-</div>

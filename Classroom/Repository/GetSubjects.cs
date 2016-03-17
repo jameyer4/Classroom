@@ -2,34 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using Classroom.Models;
+using System;
 
 namespace Classroom.Repository
 {
     public class GetSubjects
     {
         private readonly ClassroomContext _db = new ClassroomContext();
-        //GetMarks marks = new GetMarks();
-        //GetTeachers teachers = new GetTeachers();
+
         public List<Subject> GetAllSubjects()
         {
             List<Subject> subjects = _db.Subjects.ToList();
             return subjects;
         }
 
-        public List<Subject> GetSubjectsById(int id)
+        public Subject GetSubjectById(int id)
         {
             //Subject sub = new Subject();
-            var list = _db.Subjects.Where(s => s.Id.Equals(id)).ToList();
-            return list;
+            try {
+                var list = _db.Subjects.Where(s => s.Id.Equals(id)).Single();
+                return list;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
         public Subject GetSubjectByMarkId(int id)
         {
-            var subjects = GetSubjectsById(new GetMarks().GetMarksById(id).First().Id).First();
+            var subjects = GetSubjectById(new GetMarks().GetMarksById(id).First().Id);
             return subjects;
         }
-        public List<Subject> GetSubjectByTeacherId(int id)
+        public List<Subject> GetSubjectsByTeacherId(int id)
         {
-            var subjects = GetSubjectsById(new GetTeachers().GetTeacherById(id).Id).ToList();
+            List<Subject> subjects = new List<Subject>();
+            var teacher = _db.TeacherSubjects.Where(ts => ts.TeacherId.Equals(id));
+            foreach(var item in teacher)
+            {
+                subjects.Add(GetSubjectById(item.SubjectId));
+            }
             return subjects;
         }
 
@@ -39,6 +50,16 @@ namespace Classroom.Repository
             return subject;
         }
 
+        public List<Subject> GetSubjectsByStudentId(int id)
+        {
+            var marks = _db.StudentMark.Where(s => s.StudentId.Equals(id));
+            List<Subject> subjects = new List<Subject>();
+            foreach (var item in marks)
+            {
+                subjects.Add(GetSubjectById(item.SubjectId));
+            }
+            return subjects;
+        }
        // public List<Subject> GetSubjectByStudentId()
 
         //public List<Subject> GetStudentsByTeacher(string user)

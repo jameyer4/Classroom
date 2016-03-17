@@ -5,6 +5,7 @@ using Classroom.Models;
 using Classroom.Models.DB_Models;
 using Classroom.Repository;
 using System;
+using System.Collections.Specialized;
 
 namespace Classroom.Controllers
 {
@@ -31,9 +32,10 @@ namespace Classroom.Controllers
             try
             {
                 var teacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);
-                var subjects = new GetSubjects().GetSubjectByTeacherId(teacherId);
+                var subjects = new GetSubjects().GetSubjectsByTeacherId(teacherId);
+                var tasks = new GetTeacherTasks().GetAllTeacherTasks(teacherId);
                 ViewBag.mySubjects = subjects;
-
+                ViewBag.myTasks = tasks;
                 ViewBag.Error = false;
             }
             catch(Exception ex)
@@ -148,21 +150,93 @@ namespace Classroom.Controllers
         public ActionResult SubjectView(string subject)
         {
             ViewBag.Subject = subject;
-            return View(TaskManager(subject));
-        }
-
-        private List<TaskManager> TaskManager(string subject)
-        {
-            List<TaskManager> model = new List<TaskManager>();
             var tasks = db.Tasks.ToList();
-            //var c1 = from ;
-            // var check = db.Subject.Where(x => x.Id.Equals(c1));
+            return View(tasks);
+        }
+        public ActionResult AddTask(int id)
+        {
+                ViewBag.SubjectName = new GetSubjects().GetSubjectById(id).Name;
+ 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddTask([Bind(Include = "Id,DateGiven,SubmissionDate,TaskName,Description,TeacherId,SubjectId")] Tasks Task)
+        {
+            NameValueCollection nvc = Request.Form;
+            var TeacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);// Remove?
+            var mySubject = new GetSubjects().GetSubjectByName(Request.Form.Get("sname"));
+            var teacher = new GetTeachers().GetTeacherByUsername(User.Identity.Name);
 
-            //switch (subject)
+            Tasks ts = new Tasks();
+            ts.SubjectId = mySubject.Id;
+            ts.TeacherId = teacher.Id;
+            var d = Request.Form.Get("datepicker1");
+            var date = DateTime.ParseExact(Request.Form.Get("datepicker1"),"M/dd/yyyy", null);
+            ts.DateGiven = Convert.ToDateTime(date);
+            date = DateTime.ParseExact(Request.Form.Get("datepicker2"), "M/dd/yyyy", null);
+            ts.SubmissionDate = Convert.ToDateTime(date);
+            ts.TaskName = Request.Form.Get("TaskName");
+            ts.Description = Request.Form.Get("Description");
+            
+            //if (ts.Id == 0)
             //{
-            //    case "Math": var subjectGroup = model.Where(s => s.SubjectName.Equals(subject)&&s.SubjectsId.Equals())).ToList();        
+            //    ts.Id = 1;
             //}
-            return (model);
+            db.Tasks.Add(ts);
+            db.SaveChanges();
+            var students = new GetStudents().GetStudentsByTeacherUsername(User.Identity.Name);
+            foreach(var item in students)
+            {
+                StudentTasks st = new StudentTasks();
+                st.StudentId = item.Id;
+                st.TaskId = ts.Id;
+                st.Id = (st.Id==0) ? 1 : st.Id;
+                db.StudentTasks.Add(st);
+                db.SaveChanges();
+            }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult StudentTasks(int? id)
+        {
+            int nid = id ?? default(int);
+            List<StudentTasks> sTasks = new GetStudentTasks().GetStudentTasksByTasksId(nid);
+            List<string> Names = new List<string>();
+            GetStudents student = new GetStudents();
+            string taskName = "";
+            try
+            {
+                taskName = new GetTeacherTasks().GetTasksById(sTasks[0].TaskId).TaskName;
+            }
+            catch(Exception ex)
+            {
+                //
+            }
+
+            foreach (var item in sTasks)
+            {
+                var x = student.GetStudentById(item.StudentId);
+                Names.Add(x.FirstName+" "+x.LastName);
+            }
+            ViewBag.Task = sTasks;
+            ViewBag.Names = Names;
+            ViewBag.TaskName = taskName;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult StudentTasks()
+        {
+
+            db.SaveChanges();
+            return View();
         }
     }
 }
