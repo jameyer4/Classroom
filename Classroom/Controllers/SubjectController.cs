@@ -41,6 +41,7 @@ namespace Classroom.Controllers
             catch(Exception ex)
             {
                 ViewBag.ErrorMessage = "Log in to see your subjects.";
+
             }
             //return RedirectToAction("ChartMain"); --Uncomment to see average chart
             return View();
@@ -207,14 +208,16 @@ namespace Classroom.Controllers
         }
         public ActionResult StudentTasks(int? id)
         {
-            int nid = id ?? default(int);
+            //Insert TRY BLOCK to improve exception handling
+            string[] sid = Request.Url.ToString().Split('/');
+            int nid = Convert.ToInt32(sid[sid.Length - 1]);//Get task ID from url
             List<StudentTasks> sTasks = new GetStudentTasks().GetStudentTasksByTasksId(nid);
-            List<string> Names = new List<string>();
+            List<Student> students = new List<Student>();
             GetStudents student = new GetStudents();
-            string taskName = "";
+            Tasks tasks = new Tasks();
             try
             {
-                taskName = new GetTeacherTasks().GetTasksById(sTasks[0].TaskId).TaskName;
+                tasks = new GetTeacherTasks().GetTasksById(sTasks[0].TaskId);
             }
             catch(Exception ex)
             {
@@ -224,19 +227,38 @@ namespace Classroom.Controllers
             foreach (var item in sTasks)
             {
                 var x = student.GetStudentById(item.StudentId);
-                Names.Add(x.FirstName+" "+x.LastName);
+                students.Add(x);
             }
-            ViewBag.Task = sTasks;
-            ViewBag.Names = Names;
-            ViewBag.TaskName = taskName;
-            return View();
+            ViewBag.sTask = sTasks;
+            ViewBag.Students = students;
+            ViewBag.Task = tasks;
+            return View(tasks);
         }
         [HttpPost]
-        public ActionResult StudentTasks()
+        public ActionResult StudentTasks(Tasks task)
         {
+            var teacher = new GetTeachers().GetTeacherByUsername(User.Identity.Name);
+            int tid = task.Id;
+
+            var tasks = new GetStudentTasks().GetStudentTasksByTasksId(tid);
+
+            foreach(var item in tasks)
+            {
+                try
+                {
+                    var str = ("mark"+item.StudentId).ToString();
+                    double mark = Convert.ToDouble(Request.Form.Get(str));
+                    string query= ("Update StudentTasks SET Mark="+mark+" WHERE StudentId = "+ item.StudentId);
+                    db.StudentTasks.SqlQuery(query);
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }
 
             db.SaveChanges();
-            return View();
+            return RedirectToAction("StudentTasks");
         }
     }
 }

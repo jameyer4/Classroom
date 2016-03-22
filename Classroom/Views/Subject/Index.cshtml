@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (!ViewBag.Error)
+{
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -62,7 +63,7 @@
             <h3>@Html.ActionLink((string)name, "SubjectView", new { id = sId })</h3>
             <div>
                @* <p>Tasks to be included here...</p>*@
-                @Html.ActionLink("Add new task", "AddTask",new { id = sId })
+                @Html.ActionLink("Add new task", "AddTask", new { id = sId })
 
                 <table>
                     <tr>
@@ -108,14 +109,15 @@
     }
     </div>
 
-
-@if(ViewBag.dataFlag==true)
-{
-    @ViewBag.errorMessage
 }
 else
 {
-   /* using (Html.BeginForm())
+    <h3> @ViewBag.errorMessage</h3>
+}
+
+
+
+    @*using (Html.BeginForm())
     {
          <h2>Class Overview</h2>
 <br/>
@@ -127,7 +129,7 @@ else
     </style>
 
     <div align="center">           
-        <!--Graph can also be drawn from DB data (http://www.w3schools.com/aspnet/webpages_chart.asp)-->
+        Graph can also be drawn from DB data (http://www.w3schools.com/aspnet/webpages_chart.asp)
         <img src='@Url.Action("ChartMain", "Subject")'/>
-    </div>*/
-}
+    </div>*@
+
