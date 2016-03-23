@@ -306,6 +306,7 @@
     <Content Include="Views\Student\EditMarks.cshtml" />
     <Content Include="Views\Student\CreateMarks.cshtml" />
     <Content Include="Views\Subject\AddTask.cshtml" />
+    <Content Include="Views\Subject\EditMark.cshtml" />
     <None Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Subject\ChartMain.cshtml" />
     <Content Include="Views\Subject\Chart.cshtml" />

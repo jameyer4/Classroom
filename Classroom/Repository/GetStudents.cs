@@ -36,5 +36,11 @@ namespace Classroom.Repository
             }
             return students;
         }
+        public Student GetStudentByStudentTaskId(int id)
+        {
+            var sId = new GetStudentTasks().GetStudentTasksById(id).StudentId;
+            var student = GetStudentById(sId);
+            return student;
+        }
     }
 }

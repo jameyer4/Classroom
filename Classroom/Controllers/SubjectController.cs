@@ -6,6 +6,8 @@ using Classroom.Models.DB_Models;
 using Classroom.Repository;
 using System;
 using System.Collections.Specialized;
+using System.Data.Entity;
+using System.Net;
 
 namespace Classroom.Controllers
 {
@@ -232,33 +234,37 @@ namespace Classroom.Controllers
             ViewBag.sTask = sTasks;
             ViewBag.Students = students;
             ViewBag.Task = tasks;
-            return View(tasks);
+            return View(sTasks);
         }
-        [HttpPost]
-        public ActionResult StudentTasks(Tasks task)
+        // GET: /Student/Edit/5
+        public ActionResult EditMark(int? id)
         {
-            var teacher = new GetTeachers().GetTeacherByUsername(User.Identity.Name);
-            int tid = task.Id;
-
-            var tasks = new GetStudentTasks().GetStudentTasksByTasksId(tid);
-
-            foreach(var item in tasks)
+            int nid = id ?? 0;
+            if (id == null)
             {
-                try
-                {
-                    var str = ("mark"+item.StudentId).ToString();
-                    double mark = Convert.ToDouble(Request.Form.Get(str));
-                    string query= ("Update StudentTasks SET Mark="+mark+" WHERE StudentId = "+ item.StudentId);
-                    db.StudentTasks.SqlQuery(query);
-                }
-                catch(Exception ex)
-                {
-
-                }
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            StudentTasks sTask = db.StudentTasks.Find(id);
+            if (sTask == null)
+            {
+                return HttpNotFound();
+            }
+            var student = new GetStudents().GetStudentByStudentTaskId(nid);
+            ViewBag.student = student;
+            return View(sTask);
+        }
 
-            db.SaveChanges();
-            return RedirectToAction("StudentTasks");
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult EditMark([Bind(Include = "Id,StudentId,TaskId,Mark")] StudentTasks sTask)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(sTask).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(sTask);
         }
     }
 }
