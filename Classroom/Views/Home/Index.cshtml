@@ -1,22 +1,58 @@
-﻿@{
+﻿@model List<Classroom.Models.DB_Models.Notes>
+@{
     ViewBag.Title = "Home Page";
+    var teacherId = ViewBag.TeacherId;
 }
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+@*<link rel="stylesheet" href="/resources/demos/style.css">*@
+@*<link href="~/Content/jquery-ui.css" rel="stylesheet" />*@
+
+<style>
+    .group {
+        zoom: 1;
+    }
+</style>
+<script>
+      $(function() {
+        $( "#accordion" )
+          .accordion({
+              header: "> div > h3",
+              collapsible: true
+          })
+          .sortable({
+            axis: "y",
+            handle: "h3",
+            stop: function( event, ui ) {
+              // IE doesn't register the blur when sorting
+              // so trigger focusout handlers to remove .ui-state-focus
+              ui.item.children( "h3" ).triggerHandler( "focusout" );
+
+              // Refresh accordion to handle new order
+              $( this ).accordion( "refresh" );
+            }
+          });
+      });
+</script>
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">Arbitrary classroom app to organise administration of students</p>
+    <h1>My Classroom</h1>
+    <p class="lead">*Something something DARKSIDE</p>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <p>
-            Something
-        </p>
-    </div>
-    <div class="col-md-4">
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Something &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Something &raquo;</a></p>
-    </div>
+@Html.ActionLink("Add Note/Reminder", "AddNote")
+<div id="accordion">
+    @foreach (var item in Model)
+    {
+        if (item.TeacherId.Equals(teacherId))
+        {
+            <div class="group">
+                <h3>@Html.ActionLink(item.Title, "NotesDescription", new { id = item.Id }) | Due: @item.DueDate</h3>
+                <div>
+                    <p>@Html.ActionLink("Remove Note", "DeleteNote",new { id = item.Id })</p>
+                    @item.Description
+                </div>
+            </div>
+        }
+    }
 </div>

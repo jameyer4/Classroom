@@ -80,30 +80,33 @@
                             @Html.DisplayName("Description")
                         </th>
                     </tr>
-                @for (int j = 0; j < tasks.Count; j++)
-                {
-                    if (tasks[j].SubjectId == sId)
+                    @for (int j = 0; j < tasks.Count; j++)
                     {
-                        <tr>
-                            <th>
-                                <h5> @tasks[j].DateGiven.Date</h5>
-                            </th>
-                            <th>
-                                <h5> @tasks[j].SubmissionDate.Date</h5>
-                            </th>
-                            <th>
-                                <h5> @tasks[j].TaskName</h5>
-                            </th>
-                            <th>
-                                <h5> @tasks[j].Description</h5>
-                            </th>
-                            <th>
-                                @Html.ActionLink("Show student marks for this task", "StudentTasks", new { id = tasks[j].Id })
-                            </th>
-                        </tr>
+                        if (tasks[j].SubjectId == sId)
+                        {
+                            <tr>
+                                <th>
+                                    <h5> @tasks[j].DateGiven.Date</h5>
+                                </th>
+                                <th>
+                                    <h5> @tasks[j].SubmissionDate.Date</h5>
+                                </th>
+                                <th>
+                                    <h5> @tasks[j].TaskName</h5>
+                                </th>
+                                <th>
+                                    <h5> @tasks[j].Description</h5>
+                                </th>
+                                <th>
+                                    @Html.ActionLink("Show student marks for this task", "StudentTasks", new { id = tasks[j].Id }) |
+                                </th>
+                                <th>
+                                    @Html.ActionLink("Delete Task", "DeleteStudentTask", new { id = tasks[j].Id })
+                                </th>
+                            </tr>
+                        }
                     }
-                }
-                    </table>
+                  </table>
             </div>
         </div>
     }

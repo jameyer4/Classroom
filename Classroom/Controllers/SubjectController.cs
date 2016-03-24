@@ -169,7 +169,7 @@ namespace Classroom.Controllers
             var TeacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);// Remove?
             var mySubject = new GetSubjects().GetSubjectByName(Request.Form.Get("sname"));
             var teacher = new GetTeachers().GetTeacherByUsername(User.Identity.Name);
-
+            //Use object injected!
             Tasks ts = new Tasks();
             ts.SubjectId = mySubject.Id;
             ts.TeacherId = teacher.Id;
@@ -265,6 +265,43 @@ namespace Classroom.Controllers
                 return RedirectToAction("Index");
             }
             return View(sTask);
+        }
+
+        //GET: /Student/Delete/5
+        public ActionResult DeleteStudentTask(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tasks task = db.Tasks.Find(id);
+            if (task == null)
+            {
+                return HttpNotFound();
+            }
+            return View(task);
+        }
+
+        //POST: /Student/Delete/5
+        [HttpPost, ActionName("DeleteStudentTask")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            try {
+                db.Tasks.Remove(db.Tasks.Find(id));
+                var sTasks = new GetStudentTasks().GetStudentTasksByTasksId(id);
+                for (int i = 0; i < sTasks.Count; i++)
+                {
+                    db.StudentTasks.Remove(db.StudentTasks.Find(sTasks[i].Id));
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                return View();
+            }
         }
     }
 }

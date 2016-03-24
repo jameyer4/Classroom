@@ -24,6 +24,8 @@ namespace Classroom.Models
 
         public DbSet<StudentTasks> StudentTasks { get; set; }
 
+        public DbSet<Notes> Notes { get; set; }
+
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Student>().MapToStoredProcedures();
