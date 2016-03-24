@@ -60,6 +60,12 @@ namespace Classroom.Repository
             }
             return subjects;
         }
+        public Subject GetSubjectByTaskId(int id)
+        {
+            var subjectId = new GetTeacherTasks().GetTasksById(id).SubjectId;
+            var subject = GetSubjectById(subjectId);
+            return subject;
+        }
        // public List<Subject> GetSubjectByStudentId()
 
         //public List<Subject> GetStudentsByTeacher(string user)

@@ -37,7 +37,7 @@ else
                 @Html.DisplayName("Configure")
             </th>
             <th>
-                @Html.DisplayName("Marks")
+                @*@Html.DisplayName("Marks")*@
             </th>
         </tr>
         @foreach (var item in Model)
@@ -58,7 +58,7 @@ else
                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
                 </td>
                 <td>
-                    @Html.ActionLink("Avrg", "Marks", new {id = item.Id})
+                    @Html.ActionLink("Marks", "Marks", new {id = item.Id})
                 </td>
             </tr>
         }

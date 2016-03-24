@@ -2,7 +2,6 @@
 using Classroom.Models.DB_Models;
 using System.Collections.Generic;
 using System.Linq;
-using Classroom.Models;
 
 namespace Classroom.Repository
 {

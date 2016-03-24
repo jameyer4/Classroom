@@ -1,26 +1,52 @@
-﻿@using System.Threading
-@model List<Classroom.Models.DB_Models.Subject>
+﻿@model List<Classroom.Models.DB_Models.Tasks>
 @{
     ViewBag.Title = "Marks";
+    var student = ViewBag.Student;
+    var sMarks = ViewBag.sMarks;
+    var subjects = ViewBag.Subjects;
+    var taskNames = ViewBag.taskNames;
+    double avrg = 0;
 }
-<h2>Marks</h2>
+<h2>@student.FirstName @student.LastName Marks</h2>
 
 <p>
     @Html.ActionLink("Edit marks", "EditMarks")
 </p>
-@foreach (var item in Model)
-{
-    <table>
-        <tr>
-            <th>
-                @Html.DisplayName(item.Name)
-            </th>
-        </tr>
-        <tr>
-            <th>
-                @Html.DisplayFor(modelItem => item.Mark)
-            </th>
-        </tr>
-    </table>
-}
 
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Task Name")
+        </th>
+        <th>
+            @Html.DisplayName("Subject")
+        </th>
+        <th>
+            @Html.DisplayName("Mark")
+        </th>
+    </tr>
+
+    @for (int i = 0; i < sMarks.Count; i++)
+    {
+        {avrg += Convert.ToDouble(sMarks[i].Mark); }
+        <tr>
+            <th>
+                @taskNames[i]
+            </th>
+            <th>
+                @subjects[i].Name
+            </th>
+            <th>
+                @sMarks[i].Mark
+            </th>
+        </tr>
+    }
+    @{ avrg = avrg / sMarks.Count;}
+    <tr>
+        <th></th>
+        <th><h4>Avrgage: </h4></th>
+        <th>
+            <h4>@avrg</h4>
+        </th>
+    </tr>
+</table>

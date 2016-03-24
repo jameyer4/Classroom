@@ -193,18 +193,24 @@ namespace Classroom.Controllers
         //GET: /Student/Marks/5
         public ActionResult Marks(int id)
         {
-            GetSubjects getSubs = new GetSubjects();
+            var sTasks = new GetStudentTasks().GetStudentTasksByStudentId(id);
 
-            List<Subject> subjects = new List<Subject>();
-            
-            subjects = getSubs.GetSubjectsByStudentId(id).ToList();
-            if (subjects.Count<1)
+            if (sTasks.Count<1)
             {
                 ModelState.AddModelError("", "Student has no marks to show.");
-                return RedirectToAction("CreateMarks",new {StudentId=id});
+                return RedirectToAction("Class");
             }
-
-            ViewBag.SubList = subjects;
+            List<Subject> subjects = new List<Subject>();
+            List<string> taskName = new List<string>();
+            foreach (var item in sTasks)
+            {
+                subjects.Add(new GetSubjects().GetSubjectByTaskId(item.TaskId));
+                taskName.Add(new GetTeacherTasks().GetTasksById(item.TaskId).TaskName);
+            }
+            ViewBag.Subjects = subjects;
+            ViewBag.Student = new GetStudents().GetStudentById(id);
+            ViewBag.sMarks = sTasks;
+            ViewBag.TaskNames = taskName;
             return View();                        
         }
 #endregion
