@@ -236,6 +236,12 @@ namespace Classroom.Controllers
             ViewBag.Task = tasks;
             return View(sTasks);
         }
+        [HttpPost]
+        public ActionResult StudentTasks(List<StudentTasks> sTasks)
+        {
+            
+            return View();
+        }
         // GET: /Student/Edit/5
         public ActionResult EditMark(int? id)
         {

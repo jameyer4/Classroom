@@ -4,6 +4,7 @@ using System.Linq;
 using Classroom.Models.DB_Models;
 using Classroom.Repository;
 using System;
+using System.Collections.Generic;
 
 namespace Classroom.Controllers
 {
@@ -12,8 +13,14 @@ namespace Classroom.Controllers
         private ClassroomContext db = new ClassroomContext();
         public ActionResult Index()
         {
-            var list = db.Notes.ToList();
-            ViewBag.TeacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);
+            List<Notes> list = new List<Notes>();
+            try
+            {
+                list = db.Notes.ToList();
+                ViewBag.TeacherId = new GetTeachers().GetTeacherIdByUsername(User.Identity.Name);
+            }
+            catch (Exception ex) { }
+
             return View(list);
         }
 
