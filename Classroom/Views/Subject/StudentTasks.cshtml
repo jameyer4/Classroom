@@ -1,0 +1,95 @@
+﻿@model List<Classroom.Models.DB_Models.StudentTasks>
+
+@{
+    ViewBag.Title = "StudentTasks";
+}
+
+<h2>@ViewBag.TaskName</h2>
+<h4>Possible other heading here</h4>
+@{
+    var stasks = ViewBag.sTask;
+    var students = ViewBag.Students;
+    var tId = ViewBag.Task.Id;
+    string[] mrks = new string[stasks.Count];
+    var mIds = "mark";
+    string gId = "mark1";
+    string mark = "76";
+    int i = 0;
+}
+
+<table draggable="true" title="StudentMarks">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayName("Student Name")
+        </th>
+        <th>
+            @Html.DisplayName("Mark")
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @try
+    {
+
+        foreach (var item in Model)
+        {
+            if (item.TaskId.Equals(tId))
+            {
+                mIds = mIds.Substring(0, 4) + (i + 1);
+            <tr>
+                <th>
+                    @item.Id
+                </th>
+                <th>
+                    @students[i].FirstName
+                    @students[i].LastName
+                </th>
+                <th id="@mIds" contenteditable="true">
+                    @item.Mark
+                </th>
+                <th>
+                    @Html.ActionLink("Edit", "EditMark", new { id = item.Id })
+                </th>
+            </tr>
+            }
+            i++;
+        }
+    }
+    catch (Exception ex)
+    {
+
+        //Log error and inform user
+    }
+</table>
+<br />
+    <a href='@Url.Action("StudentTasks", "Subject")' onclick='save(this.href);'>
+        <input type="button" value='Submit' />
+    </a>
+
+<script>
+    function save(target)
+    {
+        alert("Here");
+        var j = 1;
+        var id = "mark"+j;
+        //var arr = new array(@i);
+        while (document.getElementById(id))
+        {
+            try{
+                alert("in");
+                var content = document.getElementById(id).innerHTML;
+                //arr[j-1] = content;
+                $.post(target,content);
+                id = "mark" + (j++);
+            }
+            catch (err) { alert("Exception"); }
+           
+        }
+        alert("END");
+    }
+</script>
+

@@ -1,0 +1,98 @@
+﻿@model Classroom.Models.DB_Models.Tasks
+
+@{
+    ViewBag.Title = "AddTask";
+    ViewBag.SubjectNameIn = ViewBag.SubjectName==null ? "" : ViewBag.SubjectName;
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+  $(function() {
+      $("#datepicker1").datepicker({
+          onSelect: function (dateText1, inst) {
+              $("input[name='dp1']").val(dateText1);
+          }
+      });
+      $("#datepicker2").datepicker({
+          onSelect: function (dateText2, inst) {
+              $("input[name='dp2']").val(dateText2);
+          }
+      });;
+  });
+</script>
+
+<h2>AddTask</h2>
+
+<h4 id="SubjectTitle" name="SubjectTitle" key="11">@ViewBag.SubjectName</h4>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="sname" value="@ViewBag.SubjectName" />
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true)
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.SubjectsId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubjectsId)
+                @Html.ValidationMessageFor(model => model.SubjectsId)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateGiven, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.DateGiven)*@
+                <input type="text" id="datepicker1" name="datepicker1">
+                @Html.ValidationMessageFor(model => model.DateGiven)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubmissionDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.SubmissionDate)*@
+                <input type="text" id="datepicker2" name="datepicker2">
+                @Html.ValidationMessageFor(model => model.SubmissionDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TaskName)
+                @Html.ValidationMessageFor(model => model.TaskName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TeacherId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TeacherId)
+                @Html.ValidationMessageFor(model => model.TeacherId)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
