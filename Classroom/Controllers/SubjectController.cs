@@ -208,6 +208,7 @@ namespace Classroom.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public ActionResult StudentTasks(int? id)
         {
             //Insert TRY BLOCK to improve exception handling
@@ -216,6 +217,7 @@ namespace Classroom.Controllers
             List<StudentTasks> sTasks = new GetStudentTasks().GetStudentTasksByTasksId(nid);
             List<Student> students = new List<Student>();
             GetStudents student = new GetStudents();
+            var mark = Request;
             Tasks tasks = new Tasks();
             try
             {
@@ -237,9 +239,25 @@ namespace Classroom.Controllers
             return View(sTasks);
         }
         [HttpPost]
-        public ActionResult StudentTasks(List<StudentTasks> sTasks)
+        public ActionResult StudentTasks(string content)
         {
-            
+            var marks = Request.Form.ToString();
+            var indiMarks = marks.Split('.');
+
+            foreach(var item in indiMarks)
+            {
+                var temp = item.Split('a');
+                if (temp[0] == "")
+                {
+                    break;
+                }
+                StudentTasks sTask = db.StudentTasks.Find(Convert.ToInt32(temp[0]));
+                sTask.Mark = Convert.ToDouble(temp[1]);
+                
+                db.StudentTasks.SqlQuery("Update StudentTasks Set Mark=" + temp[1] + "Where Id=" + temp[1]);
+                db.SaveChanges();
+            }
+
             return View();
         }
         // GET: /Student/Edit/5

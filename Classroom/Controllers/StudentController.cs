@@ -266,7 +266,7 @@ namespace Classroom.Controllers
             return View();
         }
 
-        //POST:/Student/Create<arks/5
+        //POST:/Student/Createmarks/5
         //[HttpPost]
         //public ActionResult CreateMarks([Bind(Include = "Id,Name")] Subject subject)
         //{

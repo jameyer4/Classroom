@@ -12,9 +12,8 @@
     var tId = ViewBag.Task.Id;
     string[] mrks = new string[stasks.Count];
     var mIds = "mark";
-    string gId = "mark1";
-    string mark = "76";
     int i = 0;
+    string[] ids = new string[stasks.Count];
 }
 
 <table draggable="true" title="StudentMarks">
@@ -37,18 +36,20 @@
 
         foreach (var item in Model)
         {
+            //ids[i] = stasks[i].Id.ToString();
             if (item.TaskId.Equals(tId))
             {
                 mIds = mIds.Substring(0, 4) + (i + 1);
             <tr>
-                <th>
+                <th id="@i" name="@i">
                     @item.Id
-                </th>
+                    
+                </th="@item.Id">
                 <th>
                     @students[i].FirstName
                     @students[i].LastName
                 </th>
-                <th id="@mIds" contenteditable="true">
+                <th id="@mIds" name="@mIds" contenteditable="true">
                     @item.Mark
                 </th>
                 <th>
@@ -62,34 +63,38 @@
     catch (Exception ex)
     {
 
-        //Log error and inform user
+        //Log error and inform users
     }
 </table>
 <br />
     <a href='@Url.Action("StudentTasks", "Subject")' onclick='save(this.href);'>
         <input type="button" value='Submit' />
     </a>
-
+  
 <script>
     function save(target)
     {
-        alert("Here");
+        //alert("Here");
         var j = 1;
-        var id = "mark"+j;
+        var id = "mark" + j;
+        var content = "";
+        @{i = 0; }
         //var arr = new array(@i);
         while (document.getElementById(id))
         {
             try{
-                alert("in");
-                var content = document.getElementById(id).innerHTML;
+                //alert("in");
+                 content += document.getElementById(j-1).innerText+"a"+document.getElementById(id).innerText+".";
                 //arr[j-1] = content;
-                $.post(target,content);
-                id = "mark" + (j++);
+                j++;
+                @{i++; }
+                    id = "mark" + (j);
             }
             catch (err) { alert("Exception"); }
-           
+
         }
-        alert("END");
+        $.post(target, content);
+        //alert("END");
     }
 </script>
 

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Classroom.Models.DB_Models
 {
@@ -10,6 +9,8 @@ namespace Classroom.Models.DB_Models
     {
         public int Id { get; set; }
         public int TeacherId { get; set; }
+        [Required(ErrorMessage = "Title is required")]
+        [MinLength(1)]
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DateSet { get; set; }
